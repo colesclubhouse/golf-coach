@@ -197,13 +197,13 @@ html,body{background:var(--ow);margin:0;padding:0;width:100%;min-height:100vh;}
       <div class="sc"><div class="sn">1.5</div><div class="sl">Penalties</div><div class="sg2 ok">Strength</div></div>
     </div>
     <div class="st">Weakness priority</div>
-    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Putting</div><div class="dc2m">34.3 putts ÃÂÃÂ· 1.4 three-putts ÃÂÃÂ· biggest gap</div></div><span class="bdg bw">1</span></div>
-    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Scrambling</div><div class="dc2m">20% saves ÃÂÃÂ· target 32% ÃÂÃÂ· 12pt gap</div></div><span class="bdg bw">2</span></div>
-    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Grints %</div><div class="dc2m">48% par or better ÃÂÃÂ· target 51%</div></div><span class="bdg bw">3</span></div>
-    <div class="dc2"><div><div class="dc2n">GIR par 3s</div><div class="dc2m">36% ÃÂÃÂ· target 38%</div></div><span class="bdg bw">4</span></div>
+    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Putting</div><div class="dc2m">34.3 putts ÃÂÃÂÃÂÃÂ· 1.4 three-putts ÃÂÃÂÃÂÃÂ· biggest gap</div></div><span class="bdg bw">1</span></div>
+    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Scrambling</div><div class="dc2m">20% saves ÃÂÃÂÃÂÃÂ· target 32% ÃÂÃÂÃÂÃÂ· 12pt gap</div></div><span class="bdg bw">2</span></div>
+    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Grints %</div><div class="dc2m">48% par or better ÃÂÃÂÃÂÃÂ· target 51%</div></div><span class="bdg bw">3</span></div>
+    <div class="dc2"><div><div class="dc2n">GIR par 3s</div><div class="dc2m">36% ÃÂÃÂÃÂÃÂ· target 38%</div></div><span class="bdg bw">4</span></div>
     <div class="st" style="margin-top:13px;">Progress toward scratch</div>
     <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-      <span style="font-size:11px;color:var(--tm);">Handicap (5.8 ÃÂ¢ÃÂÃÂ 0)</span>
+      <span style="font-size:11px;color:var(--tm);">Handicap (5.8 ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ 0)</span>
       <span style="font-size:11px;font-weight:600;color:var(--g);" id="hpv">5.8</span>
     </div>
     <div class="pb"><div class="pf" id="hpb" style="width:0%"></div></div>
@@ -264,41 +264,41 @@ const DA=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const GD=[2,4,6],GY=[1,3,5];
 
-// PUTTING DRILLS ÃÂ¢ÃÂÃÂ 10 drills, always 2 per session (biggest weakness)
+// PUTTING DRILLS ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ 10 drills, always 2 per session (biggest weakness)
 const PUTTING=[
   {n:'Clock Drill',dur:'30 min',d:'3 circles at 3ft/5ft/7ft with 4 balls each. Make all 4 in a row per circle. Restart on any miss. Track total putts to complete. Builds pressure putting from short range.'},
   {n:'Stick Stop Drill',dur:'20 min',d:'Stick 2ft past hole. Putt from 15-20ft. Hole=5pts, between stick and hole=3pts, past stick=1pt, short=-2pts. Race to 21. Never leave a putt short.'},
-  {n:'Ruler Drill',dur:'15 min',d:'Find a straight 5ft putt. Position ruler toward hole. Roll ball along full ruler into hole. Make 5 in a row. Trains clubface angle ÃÂ¢ÃÂÃÂ controls 87% of direction.'},
+  {n:'Ruler Drill',dur:'15 min',d:'Find a straight 5ft putt. Position ruler toward hole. Roll ball along full ruler into hole. Make 5 in a row. Trains clubface angle ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ controls 87% of direction.'},
   {n:'10-Ball Drill',dur:'25 min',d:'Tees at 10/20/30ft, 3 balls each plus Moneyball at 20ft. Two-putt all or restart. Moneyball must finish inside 3ft then hole out. Beat your restart score daily.'},
   {n:'Jordan Spieth Drill',dur:'20 min',d:'Balls 20ft from green edge. Stop first ball near edge without touching fringe. Each next ball must finish shorter. Count consecutive successes and beat your record.'},
   {n:'9-Hole Pullback Drill',dur:'25 min',d:'Start 10ft. Miss = pull one putter length further. Play from 10/20/30ft three times. 1 putt=birdie, 2=par, 3=bogey. Improve your score week to week.'},
   {n:'Mushroom Drill',dur:'20 min',d:'4-footers. 3 balls straight uphill, 1 around hole. Make 3 uphill then right, back to 3 uphill then left. Alternating until done. Builds confidence on breaking putts.'},
-  {n:'17 Drill',dur:'20 min',d:'3 holes 20ft apart. 3 balls at 5/10/15ft from separate holes. Putt each toward a different hole. 9 total putts. Tour average is 17 ÃÂ¢ÃÂÃÂ beat it consistently.'},
+  {n:'17 Drill',dur:'20 min',d:'3 holes 20ft apart. 3 balls at 5/10/15ft from separate holes. Putt each toward a different hole. 9 total putts. Tour average is 17 ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ beat it consistently.'},
   {n:'Towel Tuck Drill',dur:'15 min',d:'Towel around your back held by both armpits. Make putts keeping towel in. If it falls your stroke disconnected. Builds arm-body connection for a consistent pendulum.'},
   {n:'Spiral Drill',dur:'15 min',d:'12 balls in a spiral from 4ft to 15ft in 1ft increments. 1 point per make, lose 2 for a 3-putt. Finish with positive points. Assesses your full midrange putting range.'},
 ];
 
-// CHIPPING DRILLS ÃÂ¢ÃÂÃÂ 7 drills
+// CHIPPING DRILLS ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ 7 drills
 const CHIPPING=[
   {n:'21 Up/Down Drill',dur:'25 min',d:'Drop ball randomly within 30 yards. Any club. Get up-and-down. 9 holes. Score 21+ to beat tour scrambling average. Your #1 priority chipping drill.'},
-  {n:'Flamingo Drill',dur:'15 min',d:'Drop trail foot back so all weight loads on lead foot. Hit chips maintaining forward pressure. If you shift backward you fall ÃÂ¢ÃÂÃÂ trail foot is not there.'},
+  {n:'Flamingo Drill',dur:'15 min',d:'Drop trail foot back so all weight loads on lead foot. Hit chips maintaining forward pressure. If you shift backward you fall ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ trail foot is not there.'},
   {n:'Game On',dur:'25 min',d:'40 random chip shots to different holes, distances, slopes, lies. Within 6ft = win. Track wins/losses like a season record. Forces you to handle every situation.'},
   {n:'Chip-a-Coin Drill',dur:'15 min',d:'Coin 1-2 inches in front of ball. Practice chips moving the coin after ball contact. Ensures you hit down and through for proper backspin and trajectory.'},
   {n:'3/1 Hole',dur:'20 min',d:'9 spots around green. Hit low-loft (8i/7i), mid-loft (PW), and high-loft (LW/SW) from each. Closest club wins the hole. Master multiple shot types.'},
   {n:'Lead Hip Stick Drill',dur:'15 min',d:'Alignment rod on wedge extending 2-3ft past grip against lead hip. Flip wrists and rod hits your side. Forces proper body rotation through impact.'},
-  {n:'Open Trail Hand Drill',dur:'15 min',d:'Remove trail hand from grip, rest palm on shaft. Feel constant palm-to-shaft pressure. If you flip, connection breaks. Hit 20 chips ÃÂ¢ÃÂÃÂ eliminates the flip.'},
+  {n:'Open Trail Hand Drill',dur:'15 min',d:'Remove trail hand from grip, rest palm on shaft. Feel constant palm-to-shaft pressure. If you flip, connection breaks. Hit 20 chips ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ eliminates the flip.'},
 ];
 
-// SWING DRILLS ÃÂ¢ÃÂÃÂ 5 drills
+// SWING DRILLS ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ 5 drills
 const SWING=[
   {n:'9-Shot Tic Tac Toe',dur:'30 min',d:'Hit all 9 ball flights: Low/Mid/High Draw, Straight, and Fade. Calibrates face-to-path, swing path, and low-point control. Used by Tiger Woods with his father.'},
   {n:'Tempo Swings',dur:'20 min',d:'Metronome app at 64bpm. Club crosses impact zone on each beep. Start small, build to 3/4 speed. Hit shots imitating that tempo. Most repeatable swing rhythm drill.'},
-  {n:'Startline Gate',dur:'20 min',d:'Two rods 1ft apart as a gate 6ft in front of ball. 30 balls alternating left/right/center start lines ÃÂ¢ÃÂÃÂ cannot repeat same choice twice. Score out of 30.'},
+  {n:'Startline Gate',dur:'20 min',d:'Two rods 1ft apart as a gate 6ft in front of ball. 30 balls alternating left/right/center start lines ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ cannot repeat same choice twice. Score out of 30.'},
   {n:'Under Bridge Over Tree',dur:'20 min',d:'Alternate 3/4 swing low shots and high shots through your bag. Low: ball back, drive down, low finish. High: ball forward, sweepy, high finish. Builds trajectory control.'},
-  {n:'Lowpoint Towel Drill',dur:'20 min',d:'Flat towel 2 inches behind ball. 7 iron. Goal: ball-first contact, ground contact in front of ball ÃÂ¢ÃÂÃÂ not towel. 20 shots, track successes.'},
+  {n:'Lowpoint Towel Drill',dur:'20 min',d:'Flat towel 2 inches behind ball. 7 iron. Goal: ball-first contact, ground contact in front of ball ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ not towel. 20 shots, track successes.'},
 ];
 
-// GYM PROGRAMS ÃÂ¢ÃÂÃÂ 8 fully balanced weeks
+// GYM PROGRAMS ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ 8 fully balanced weeks
 // Each program hits all 7 patterns: Hip Hinge, Squat, H-Push, H-Pull, V-Pull, V-Push, Core/Power
 // Balanced push/pull. Golf-friendly. Builds aesthetic physique + athletic strength.
 // Day A = Monday (Strength), Day B = Wednesday (Power), Day C = Friday (Hypertrophy)
@@ -486,18 +486,18 @@ function getGymDay(){
 }
 
 function getGymProgram(){
-  const wk=getWeekNumber();
-  const wi=(wk-1)%6;
+  var wk=getWeekNumber();
+  var wi=(wk-1)%6;
   return{A:DAY_A[wi],B:DAY_B[wi],C:DAY_C[wi]};
 }
 
 function getGymDay(){
-  const wk=getWeekNumber();
-  const wi=(wk-1)%6;
-  const dow2=dw();
-  if(dow2===1)return DAY_A[wi];
-  if(dow2===3)return DAY_B[wi];
-  if(dow2===5)return DAY_C[wi];
+  var wk=getWeekNumber();
+  var wi=(wk-1)%6;
+  var d=dw();
+  if(d===1)return DAY_A[wi];
+  if(d===3)return DAY_B[wi];
+  if(d===5)return DAY_C[wi];
   return DAY_A[wi];
 }
 
@@ -522,7 +522,7 @@ async function syncToSheets(data){
     setSyncStatus('ok','Synced with Google Sheets');
     return true;
   }catch(e){
-    setSyncStatus('error','Saved locally ÃÂÃÂ· sync failed');
+    setSyncStatus('error','Saved locally ÃÂÃÂÃÂÃÂ· sync failed');
     return false;
   }
 }
@@ -550,7 +550,7 @@ function initHeader(){
   document.getElementById('hcpin').value=hcp;
   updatePB(parseFloat(hcp));
   const day=DA[d.getDay()];
-  const msg=isGolf()&&isGym()?day+' ÃÂÃÂ· Golf + Gym':isGolf()?day+' ÃÂÃÂ· Golf practice day':isGym()?day+' ÃÂÃÂ· Gym day':day+' ÃÂÃÂ· Rest & recovery';
+  const msg=isGolf()&&isGym()?day+' ÃÂÃÂÃÂÃÂ· Golf + Gym':isGolf()?day+' ÃÂÃÂÃÂÃÂ· Golf practice day':isGym()?day+' ÃÂÃÂÃÂÃÂ· Gym day':day+' ÃÂÃÂÃÂÃÂ· Rest & recovery';
   setSyncStatus('ok',msg);
 }
 
@@ -580,7 +580,7 @@ function buildToday(){
 
   let h='';
   if(isGolf()){
-    h+=`<div class="st">Today's golf practice ÃÂÃÂ· Week ${getWeekNumber()}</div>`;
+    h+=`<div class="st">Today's golf practice ÃÂÃÂÃÂÃÂ· Week ${getWeekNumber()}</div>`;
     h+=`<div class="fb"><div><div class="ft">Priority: Putting & Scrambling</div><div class="fs">Rotates every week automatically</div></div><span class="bdg bw">Focus</span></div>`;
     todayDrills.forEach(x=>{
       const isPutt=PUTTING.find(p=>p.n===x.n);
@@ -588,8 +588,8 @@ function buildToday(){
     });
   }
   if(isGym()){
-    if(isGolf())h+=`<div class="div" style="margin:11px -13px;"></div><div class="st" style="margin-top:11px;">Today's gym ÃÂÃÂ· ${gym.name}</div>`;
-    else h+=`<div class="st">Today's gym ÃÂÃÂ· ${gym.name}</div>`;
+    if(isGolf())h+=`<div class="div" style="margin:11px -13px;"></div><div class="st" style="margin-top:11px;">Today's gym ÃÂÃÂÃÂÃÂ· ${gym.name}</div>`;
+    else h+=`<div class="st">Today's gym ÃÂÃÂÃÂÃÂ· ${gym.name}</div>`;
     h+=`<div style="font-size:11px;color:var(--tu);margin-bottom:9px;">${gym.note}</div>`;
     gym.exercises.forEach(x=>{
       h+=`<div class="gc"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div class="gn">${x.n}</div><span class="gmtag">${x.p}</span></div><div class="gm2">${x.m}</div><div style="font-size:11px;color:var(--g);margin-top:3px;">${x.golf}</div></div>`;
@@ -597,7 +597,7 @@ function buildToday(){
   }
   if(!isGolf()&&!isGym()){
     h+=`<div class="st">Rest & recovery</div>`;
-    h+=`<div class="df"><div class="dft">Active recovery day</div><div class="dfc">Rest protocol</div><div class="dfd">Light walking, hip mobility, foam rolling. Review your logged sessions and plan your next practice. Good day for mental game work ÃÂ¢ÃÂÃÂ visualize your pre-shot routine: assess shot elements, choose a club, visualize ball flight, see your landing spot, focused practice swing, walk in clear-headed and react to the target.</div></div>`;
+    h+=`<div class="df"><div class="dft">Active recovery day</div><div class="dfc">Rest protocol</div><div class="dfd">Light walking, hip mobility, foam rolling. Review your logged sessions and plan your next practice. Good day for mental game work ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ visualize your pre-shot routine: assess shot elements, choose a club, visualize ball flight, see your landing spot, focused practice swing, walk in clear-headed and react to the target.</div></div>`;
   }
   document.getElementById('tcont').innerHTML=h;
 }
@@ -624,7 +624,7 @@ function buildWeek(){
 
 function buildDrills(f){
   const list=f==='all'?ALL_DRILLS:ALL_DRILLS.filter(x=>x.t===f);
-  document.getElementById('dlist').innerHTML=list.map(x=>`<div class="df"><div class="dft">${x.n}</div><div class="dfc">${x.c} ÃÂÃÂ· ${x.dur}</div><div class="dfd">${x.d}</div></div>`).join('')||`<div style="color:var(--tu);font-size:12px;text-align:center;padding:16px;">No drills found</div>`;
+  document.getElementById('dlist').innerHTML=list.map(x=>`<div class="df"><div class="dft">${x.n}</div><div class="dfc">${x.c} ÃÂÃÂÃÂÃÂ· ${x.dur}</div><div class="dfd">${x.d}</div></div>`).join('')||`<div style="color:var(--tu);font-size:12px;text-align:center;padding:16px;">No drills found</div>`;
 }
 
 function filt(f,btn){
@@ -673,7 +673,7 @@ async function savelog(){
     localStorage.setItem('cgc_logs',JSON.stringify(updated));
     showToast('Saved & synced to Google Sheets!','ok');
   }else{
-    showToast('Saved locally ÃÂ¢ÃÂÃÂ will sync when online','err');
+    showToast('Saved locally ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ will sync when online','err');
   }
   btn.textContent='Save + sync to Google Sheets';
   buildLogHist();
@@ -683,7 +683,7 @@ function buildLogHist(){
   const logs=JSON.parse(localStorage.getItem('cgc_logs')||'[]');
   const el=document.getElementById('lhist');
   if(!logs.length){el.innerHTML='<div style="font-size:12px;color:var(--tu);text-align:center;padding:14px;">No sessions logged yet</div>';return;}
-  el.innerHTML=logs.slice().reverse().slice(0,10).map(l=>`<div class="lhi"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;"><div class="lht">${l.dr||l.t||'Session'}</div><span class="lhs ${l.synced?'lhs-ok':'lhs-pending'}">${l.synced?'Synced':'Local'}</span></div><div class="lhm">${l.dt}${l.sc?' ÃÂÃÂ· Score: '+l.sc:''}${l.pt?' ÃÂÃÂ· Putts: '+l.pt:''}</div>${l.nt?`<div class="lhn">${l.nt}</div>`:''}</div>`).join('');
+  el.innerHTML=logs.slice().reverse().slice(0,10).map(l=>`<div class="lhi"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;"><div class="lht">${l.dr||l.t||'Session'}</div><span class="lhs ${l.synced?'lhs-ok':'lhs-pending'}">${l.synced?'Synced':'Local'}</span></div><div class="lhm">${l.dt}${l.sc?' ÃÂÃÂÃÂÃÂ· Score: '+l.sc:''}${l.pt?' ÃÂÃÂÃÂÃÂ· Putts: '+l.pt:''}</div>${l.nt?`<div class="lhn">${l.nt}</div>`:''}</div>`).join('');
 }
 
 function showToast(msg,type){
