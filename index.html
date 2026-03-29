@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cole's Golf Coach">
+<title>Cole's Golf Coach</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+:root{--g:#1D4A2F;--gm:#2D6B45;--gl:#7BBF96;--gp:#D4E8DA;--ow:#F5F0E8;--od:#EDE8DC;--ob:#C8C0B0;--td:#1D2E1F;--tm:#4A5C4D;--tu:#7A7060;}
+html,body{background:#E8E3DB;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;}
+.app{background:var(--ow);width:100%;max-width:480px;min-height:100vh;display:flex;flex-direction:column;}
+.hdr{background:var(--g);padding:max(env(safe-area-inset-top),18px) 18px 13px;}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.greeting{color:var(--ow);font-size:17px;font-weight:600;}
+.dateline{color:var(--gl);font-size:12px;margin-top:2px;}
+.hcp-box{text-align:right;}
+.hcp-lbl{color:var(--gl);font-size:11px;}
+.hcp-num{color:var(--ow);font-size:30px;font-weight:700;line-height:1;}
+.hcp-goal{color:var(--gl);font-size:11px;}
+.wbar{background:rgba(0,0,0,0.18);border-radius:7px;padding:5px 10px;display:inline-flex;align-items:center;gap:6px;}
+.wbar-txt{color:#C8E8D0;font-size:12px;}
+.sdot{width:7px;height:7px;border-radius:50%;background:var(--gl);flex-shrink:0;}
+.sdot.syncing{background:#FAC775;}
+.sdot.error{background:#F09595;}
+.tabs{display:flex;background:var(--g);}
+.tab{flex:1;padding:9px 2px;text-align:center;font-size:12px;color:var(--gl);cursor:pointer;border-bottom:2px solid transparent;-webkit-tap-highlight-color:transparent;}
+.tab.on{color:var(--ow);border-bottom-color:var(--ow);}
+.body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:80px;}
+.pg{display:none;}
+.pg.on{display:block;}
+.wk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;padding:11px 13px;}
+.dc{background:var(--od);border-radius:5px;padding:5px 2px;text-align:center;border:0.5px solid var(--ob);}
+.dc.tod{background:var(--g);border-color:var(--g);}
+.dc.gf{border-bottom:2px solid var(--gm);}
+.dc.gy{border-bottom:2px solid var(--tu);}
+.dl{font-size:9px;color:var(--tu);}
+.dl.tod{color:var(--gl);}
+.dn{font-size:13px;font-weight:600;color:var(--td);margin-top:1px;}
+.dn.tod{color:var(--ow);}
+.div{height:0.5px;background:var(--ob);margin:0 13px;}
+.sec{padding:13px;}
+.st{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tu);margin-bottom:10px;}
+.sg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;}
+.sc{background:var(--od);border-radius:8px;padding:10px 8px;text-align:center;border:0.5px solid var(--ob);}
+.sn{font-size:18px;font-weight:600;color:var(--g);}
+.sl{font-size:10px;color:var(--tu);margin-top:1px;}
+.sg2{font-size:10px;color:#A32D2D;margin-top:1px;}
+.sg2.ok{color:#27500A;}
+.fb{background:var(--g);border-radius:10px;padding:11px 13px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+.ft{color:var(--ow);font-size:14px;font-weight:600;}
+.fs{color:var(--gl);font-size:11px;margin-top:2px;}
+.bdg{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:600;}
+.bw{background:#791F1F;color:#FCEBEB;}
+.bg{background:var(--gp);color:#27500A;}
+.dc2{background:var(--od);border-radius:0 8px 8px 0;padding:11px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;border:0.5px solid var(--ob);border-left:3px solid var(--g);}
+.dc2n{font-size:13px;font-weight:600;color:var(--td);}
+.dc2m{font-size:11px;color:var(--tu);margin-top:2px;}
+.gc{background:var(--od);border-radius:0 8px 8px 0;padding:11px 12px;margin-bottom:8px;border:0.5px solid var(--ob);border-left:3px solid var(--tu);}
+.gn{font-size:13px;font-weight:600;color:var(--td);}
+.gm2{font-size:11px;color:var(--tu);margin-top:2px;}
+.df{background:var(--od);border-radius:8px;padding:13px;margin-bottom:8px;border:0.5px solid var(--ob);}
+.dft{font-size:13px;font-weight:600;color:var(--g);margin-bottom:3px;}
+.dfc{font-size:10px;color:var(--tu);margin-bottom:7px;}
+.dfd{font-size:12px;color:var(--tm);line-height:1.55;}
+.frow{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap;}
+.fb2{font-size:12px;padding:6px 12px;border-radius:20px;border:0.5px solid var(--ob);background:var(--od);color:var(--tm);cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.fb2.on{background:var(--g);color:var(--ow);border-color:var(--g);}
+.lf{background:var(--od);border-radius:10px;padding:13px;border:0.5px solid var(--ob);margin-bottom:11px;}
+.ll{font-size:12px;color:var(--tm);margin-bottom:5px;display:block;font-weight:500;}
+.li{width:100%;background:var(--ow);border:0.5px solid var(--ob);border-radius:8px;padding:9px 11px;font-size:14px;color:var(--td);margin-bottom:9px;outline:none;-webkit-appearance:none;}
+.li:focus{border-color:var(--g);}
+.lr{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.lb{width:100%;background:var(--g);color:var(--ow);border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;margin-top:3px;-webkit-tap-highlight-color:transparent;}
+.lb:active{opacity:.85;}
+.lhi{background:var(--od);border-radius:8px;padding:11px 13px;margin-bottom:8px;border:0.5px solid var(--ob);}
+.lht{font-size:13px;font-weight:600;color:var(--td);}
+.lhm{font-size:11px;color:var(--tu);margin-top:2px;}
+.lhn{font-size:12px;color:var(--tm);margin-top:5px;line-height:1.4;}
+.lhs{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:600;}
+.lhs-ok{background:var(--gp);color:#27500A;}
+.lhs-pending{background:#FAEEDA;color:#633806;}
+.toast{font-size:13px;font-weight:500;padding:10px 16px;border-radius:9px;text-align:center;margin:0 13px 11px;display:none;}
+.toast.ok{background:var(--g);color:var(--ow);}
+.toast.err{background:#FCEBEB;color:#791F1F;}
+.bnav{background:var(--g);display:flex;justify-content:space-around;padding:10px 0;padding-bottom:max(env(safe-area-inset-bottom),10px);position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;}
+.bi{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:0 12px;-webkit-tap-highlight-color:transparent;}
+.bd{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.15);}
+.bd.on{background:var(--gl);}
+.bl{font-size:10px;color:var(--gl);}
+.bl.on{color:var(--ow);}
+.wr{display:flex;gap:8px;margin-bottom:9px;align-items:center;}
+.wdl{font-size:13px;font-weight:600;color:var(--td);width:36px;flex-shrink:0;}
+.wp{font-size:11px;padding:4px 10px;border-radius:20px;margin-right:4px;display:inline-block;}
+.wpg{background:var(--gp);color:#27500A;}
+.wpy{background:var(--od);color:var(--tm);border:0.5px solid var(--ob);}
+.wpr{color:var(--tu);font-style:italic;font-size:11px;}
+.hi{display:flex;gap:9px;align-items:center;margin-bottom:11px;}
+.hin{flex:1;background:var(--ow);border:0.5px solid var(--ob);border-radius:8px;padding:9px 11px;font-size:17px;font-weight:600;color:var(--g);outline:none;text-align:center;-webkit-appearance:none;}
+.hsb{background:var(--g);color:var(--ow);border:none;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;}
+.pb{background:var(--od);border-radius:4px;height:7px;overflow:hidden;border:0.5px solid var(--ob);margin-top:4px;}
+.pf{height:100%;border-radius:4px;background:var(--g);transition:width 0.5s;}
+.sync-banner{background:var(--gp);border-radius:9px;padding:9px 13px;margin-bottom:11px;display:flex;justify-content:space-between;align-items:center;}
+.sbt{font-size:12px;color:#27500A;font-weight:600;}
+.sbs{font-size:11px;color:#3B6D11;margin-top:1px;}
+.pull-btn{background:var(--g);color:var(--ow);border:none;border-radius:7px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div><div class="greeting" id="greet">Good morning, Cole</div><div class="dateline" id="dline">Loading...</div></div>
+    <div class="hcp-box">
+      <div class="hcp-lbl">Handicap</div>
+      <div class="hcp-num" id="hnum">5.8</div>
+      <div class="hcp-goal">Goal: Scratch</div>
+    </div>
+  </div>
+  <div class="wbar"><div class="sdot" id="sdot"></div><div class="wbar-txt" id="wtxt">Loading...</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab on" onclick="go('today',this)">Today</div>
+  <div class="tab" onclick="go('week',this)">Week</div>
+  <div class="tab" onclick="go('stats',this)">Stats</div>
+  <div class="tab" onclick="go('drills',this)">Drills</div>
+  <div class="tab" onclick="go('log',this)">Log</div>
+</div>
+
+<div class="body">
+
+<div id="p-today" class="pg on">
+  <div class="wk" id="wstrip"></div>
+  <div class="div"></div>
+  <div class="sec">
+    <div class="st">Stats snapshot</div>
+    <div class="sg">
+      <div class="sc"><div class="sn">81.6</div><div class="sl">Avg score</div><div class="sg2">target 72</div></div>
+      <div class="sc"><div class="sn">34.3</div><div class="sl">Putts/rnd</div><div class="sg2">target 30</div></div>
+      <div class="sc"><div class="sn">20%</div><div class="sl">Scrambling</div><div class="sg2">target 32%</div></div>
+    </div>
+  </div>
+  <div class="div"></div>
+  <div class="sec" id="tcont"></div>
+</div>
+
+<div id="p-week" class="pg">
+  <div class="sec">
+    <div class="st">This week's schedule</div>
+    <div id="wplan"></div>
+    <div class="div" style="margin:13px -13px;"></div>
+    <div class="st" style="margin-top:13px;">Weekly drill rotation</div>
+    <div id="wdrills"></div>
+  </div>
+</div>
+
+<div id="p-stats" class="pg">
+  <div class="sec">
+    <div class="st">Update handicap</div>
+    <div class="hi">
+      <input class="hin" type="number" step="0.1" id="hcpin" placeholder="5.8">
+      <button class="hsb" onclick="saveHcp()">Save</button>
+    </div>
+    <div class="st">Grint baseline</div>
+    <div class="sg" style="margin-bottom:9px;">
+      <div class="sc"><div class="sn">81.6</div><div class="sl">Avg score</div></div>
+      <div class="sc"><div class="sn">38.8</div><div class="sl">Front 9</div></div>
+      <div class="sc"><div class="sn">38.3</div><div class="sl">Back 9</div></div>
+    </div>
+    <div class="sg" style="margin-bottom:9px;">
+      <div class="sc"><div class="sn">57%</div><div class="sl">Drive acc.</div><div class="sg2 ok">Strength</div></div>
+      <div class="sc"><div class="sn">59%</div><div class="sl">Approach</div><div class="sg2 ok">Strength</div></div>
+      <div class="sc"><div class="sn">43%</div><div class="sl">GIR</div><div class="sg2">in range</div></div>
+    </div>
+    <div class="sg" style="margin-bottom:9px;">
+      <div class="sc"><div class="sn">34.3</div><div class="sl">Putts/rnd</div><div class="sg2">target 32.3</div></div>
+      <div class="sc"><div class="sn">1.4</div><div class="sl">3-putts</div><div class="sg2">target 0.5</div></div>
+      <div class="sc"><div class="sn">48%</div><div class="sl">Grints %</div><div class="sg2">target 51%</div></div>
+    </div>
+    <div class="sg" style="margin-bottom:13px;">
+      <div class="sc"><div class="sn">20%</div><div class="sl">Scrambling</div><div class="sg2">target 32%</div></div>
+      <div class="sc"><div class="sn">36%</div><div class="sl">GIR par 3s</div><div class="sg2">target 38%</div></div>
+      <div class="sc"><div class="sn">1.5</div><div class="sl">Penalties</div><div class="sg2 ok">Strength</div></div>
+    </div>
+    <div class="st">Weakness priority</div>
+    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Putting</div><div class="dc2m">34.3 putts · 1.4 three-putts · biggest gap</div></div><span class="bdg bw">1</span></div>
+    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Scrambling</div><div class="dc2m">20% saves · target 32% · 12pt gap</div></div><span class="bdg bw">2</span></div>
+    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Grints %</div><div class="dc2m">48% par or better · target 51%</div></div><span class="bdg bw">3</span></div>
+    <div class="dc2"><div><div class="dc2n">GIR par 3s</div><div class="dc2m">36% · target 38%</div></div><span class="bdg bw">4</span></div>
+    <div class="st" style="margin-top:13px;">Progress toward scratch</div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+      <span style="font-size:11px;color:var(--tm);">Handicap (5.8 → 0)</span>
+      <span style="font-size:11px;font-weight:600;color:var(--g);" id="hpv">5.8</span>
+    </div>
+    <div class="pb"><div class="pf" id="hpb" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div id="p-drills" class="pg">
+  <div class="sec">
+    <div class="frow" id="frow">
+      <div class="fb2 on" onclick="filt('all',this)">All</div>
+      <div class="fb2" onclick="filt('putting',this)">Putting</div>
+      <div class="fb2" onclick="filt('chipping',this)">Chipping</div>
+      <div class="fb2" onclick="filt('swing',this)">Full swing</div>
+      <div class="fb2" onclick="filt('gym',this)">Gym</div>
+    </div>
+    <div id="dlist"></div>
+  </div>
+</div>
+
+<div id="p-log" class="pg">
+  <div class="sec">
+    <div class="sync-banner">
+      <div><div class="sbt">Google Sheets sync active</div><div class="sbs">Sessions save to your sheet automatically</div></div>
+      <button class="pull-btn" onclick="pullSheets()">Pull data</button>
+    </div>
+    <div class="st">Log a session</div>
+    <div class="lf">
+      <label class="ll">Session type</label>
+      <select class="li" id="ltype"><option>Golf practice</option><option>Gym workout</option><option>Full round</option></select>
+      <label class="ll">Drill / workout</label>
+      <input class="li" type="text" id="ldrill" placeholder="e.g. Clock Drill, Back Squat...">
+      <div class="lr">
+        <div><label class="ll">Score / result</label><input class="li" type="text" id="lscore" placeholder="e.g. 8/10"></div>
+        <div><label class="ll">Putts (round)</label><input class="li" type="number" id="lputts" placeholder="e.g. 32"></div>
+      </div>
+      <label class="ll" style="margin-top:3px;">Notes</label>
+      <textarea class="li" id="lnotes" rows="3" style="resize:none;height:68px;" placeholder="How did it feel? What to improve?"></textarea>
+      <button class="lb" id="savebtn" onclick="savelog()">Save + sync to Google Sheets</button>
+    </div>
+    <div class="toast" id="toast"></div>
+    <div class="st">Recent sessions</div>
+    <div id="lhist"></div>
+  </div>
+</div>
+
+</div>
+
+<div class="bnav">
+  <div class="bi" onclick="go('today',null)"><div class="bd on" id="bn-today"></div><div class="bl on" id="bnl-today">Today</div></div>
+  <div class="bi" onclick="go('week',null)"><div class="bd" id="bn-week"></div><div class="bl" id="bnl-week">Week</div></div>
+  <div class="bi" onclick="go('stats',null)"><div class="bd" id="bn-stats"></div><div class="bl" id="bnl-stats">Stats</div></div>
+  <div class="bi" onclick="go('drills',null)"><div class="bd" id="bn-drills"></div><div class="bl" id="bnl-drills">Drills</div></div>
+  <div class="bi" onclick="go('log',null)"><div class="bd" id="bn-log"></div><div class="bl" id="bnl-log">Log</div></div>
+</div>
+
+</div>
+<script>
+const SHEET='https://script.google.com/macros/s/AKfycbwWiZblV_wKDN0TyC61b-IloYkGyDfkUq6cliyGMWi6m_lOXcDS2fsTla5KuIGwD-ngwQ/exec';
+const DA=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const GD=[2,4,6],GY=[1,3,5];
+const DRILLS=[
+  {n:'Clock Drill',c:'Putting',t:'putting',dur:'30 min',d:'Set up 3 circles at 3ft, 5ft, and 7ft with 4 balls each. Make all 4 in a row per circle before moving on. Restart on any miss. Track total putts to complete all three circles. Great for pressure putting.'},
+  {n:'Ruler Drill',c:'Putting',t:'putting',dur:'15 min',d:'Find a straight 5ft putt. Position ruler toward hole. Roll ball along full ruler into hole. Make 5 in a row. Trains clubface angle at impact — controls up to 87% of ball direction.'},
+  {n:'Towel Tuck Drill',c:'Putting',t:'putting',dur:'15 min',d:'Place towel around your back held with both armpits. Make putts keeping the towel held. If it falls, your stroke disconnected. Builds arm-body connection for a consistent pendulum stroke.'},
+  {n:'Jordan Spieth Drill',c:'Putting',t:'putting',dur:'20 min',d:'Set balls 20ft from green edge. Stop first ball near edge without touching fringe. Each next ball must finish shorter than last. Count consecutive successes and beat your record daily.'},
+  {n:'10-Ball Drill',c:'Putting',t:'putting',dur:'25 min',d:'Tees at 10, 20, 30ft with 3 balls each plus 1 Moneyball at 20ft. Two-putt all or restart. Moneyball must finish inside 3ft then hole out. Track restarts and beat your score daily.'},
+  {n:'Stick Stop Drill',c:'Putting',t:'putting',dur:'20 min',d:'Stick 2ft past hole. Putt from 15-20ft. Hole=5pts, between stick and hole=3pts, past stick=1pt, short=-2pts. Race to 21. Trains you to never leave a putt short.'},
+  {n:'Mushroom Drill',c:'Putting',t:'putting',dur:'20 min',d:'4-footers. 3 balls straight uphill, 1 ball each around hole. Make 3 uphill, then right, back to 3 uphill, then left — alternating until complete. Builds confidence on breaking putts.'},
+  {n:'9-Hole Pullback Drill',c:'Putting',t:'putting',dur:'25 min',d:'Start 10ft. Miss = pull one putter length further. Play from 10, 20, 30ft three times like a 9-hole round. 1 putt=birdie, 2=par, 3=bogey. Track and improve week to week.'},
+  {n:'17 Drill',c:'Putting',t:'putting',dur:'20 min',d:'3 holes 20ft apart. 3 balls at 5ft, 10ft, 15ft from separate holes. Putt each toward a different hole. 9 total putts. Tour average is 17 — beat it consistently.'},
+  {n:'Game On',c:'Chipping',t:'chipping',dur:'25 min',d:'40 random chip shots to different holes, distances, slopes, lies. Within 6ft = win. Track wins/losses like a season. Forces you to handle every situation.'},
+  {n:'Open Trail Hand Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Remove trail hand from grip, rest palm on shaft. Feel constant palm-to-shaft pressure through swing. If you flip, connection breaks. Hit 20 chips this way.'},
+  {n:'Chip-a-Coin Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Coin 1-2 inches in front of ball. Practice chips moving the coin after ball contact. Ensures you hit down and through for proper backspin and trajectory.'},
+  {n:'21 Up/Down Drill',c:'Chipping',t:'chipping',dur:'25 min',d:'Drop ball randomly within 30 yards. Any club. Get up-and-down. 9 holes. Score 21+ to beat tour scrambling average. Your scrambling is 20% — highest priority chipping drill.'},
+  {n:'3/1 Hole',c:'Chipping',t:'chipping',dur:'20 min',d:'9 spots around green. Hit low-loft (8i/7i), mid-loft (PW), and high-loft (LW/SW) from each. Closest club wins the hole. Master multiple shot types.'},
+  {n:'Flamingo Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Drop trail foot back so weight loads on lead foot. Hit chips maintaining forward pressure. If you shift backward you fall — trail foot is not there to catch you.'},
+  {n:'Lead Hip Stick Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Alignment rod attached to wedge extending 2-3ft past grip against lead hip. Flip wrists and rod hits your side. Forces proper body rotation through impact.'},
+  {n:'Lowpoint Towel Drill',c:'Full swing',t:'swing',dur:'20 min',d:'Flat towel 2 inches behind ball. 7 iron. Goal: ball-first contact, ground contact in front of ball — not towel. 20 shots, track successes.'},
+  {n:'Tempo Swings',c:'Full swing',t:'swing',dur:'20 min',d:'Metronome app at 64bpm. Club crosses impact zone on each beep. Start small, build to 3/4 speed. Hit shots imitating that tempo. Most repeatable swing rhythm drill.'},
+  {n:'9-Shot Tic Tac Toe',c:'Full swing',t:'swing',dur:'30 min',d:'Hit all 9 ball flights: Low/Mid/High Draw, Straight, Fade. Calibrates face-to-path, swing path, and low-point control. Used by Tiger Woods with his father.'},
+  {n:'Startline Gate',c:'Full swing',t:'swing',dur:'20 min',d:'Two rods 1ft apart as a gate 6ft in front of ball. 30 balls alternating left/right/center start lines — cannot repeat same choice twice. Score out of 30.'},
+  {n:'Under Bridge Over Tree',c:'Full swing',t:'swing',dur:'20 min',d:'Alternate 3/4 swing low shots and high shots through your bag. Low: ball back, drive down, low finish. High: ball forward, sweepy, high finish. Builds trajectory control.'},
+  {n:'Back Squat',c:'Gym',t:'gym',dur:'4x5 reps',d:'Barbell on upper traps. Brace core, push knees out, descend to parallel. Drive through heels. Trains the exact ground force pattern used in the golf downswing.'},
+  {n:'Romanian Deadlift',c:'Gym',t:'gym',dur:'3x8 reps',d:'Barbell at hips, soft knees. Hinge at hips pushing them back. Feel hamstring stretch, drive hips forward. Builds hip hinge and posterior chain strength essential for swing stability.'},
+  {n:'Russian Twist',c:'Gym',t:'gym',dur:'3x15 reps',d:'Seated, knees bent, holding dumbbell. Lean back, core braced. Twist torso left to hip, center, right. Directly trains the rotational core pattern used in every golf swing.'},
+  {n:'Medball Slams',c:'Gym',t:'gym',dur:'3x10 reps',d:'Golf posture, ball between feet. Squat, pick up, lift overhead, throw down with maximum force. Catch on bounce. Builds total-body explosive power — triceps, abs, shoulders, glutes, quads.'},
+  {n:'Squat Jumps',c:'Gym',t:'gym',dur:'4x6 reps',d:'Shoulder-width. Descend to full squat. Explode up off ground, legs fully extended. Land toe-to-heel and descend immediately. Builds vertical ground force production central to swing power.'},
+  {n:'Sprinter Jumps',c:'Gym',t:'gym',dur:'3x8 each',d:'Split stance, arms aligned with opposite feet. Jump vertically on lead leg using arm drive. Switch sides. Directly mimics the kinetic power sequence of the golf downswing.'},
+  {n:'Alternating Superman',c:'Gym',t:'gym',dur:'3x12 reps',d:'Face down, arms and legs extended. Lift one arm and opposite leg arching back. Hold 2 seconds. Alternate. Builds lower back and glute strength for maintaining spine angle through impact.'},
+  {n:'Plyo Push-Ups',c:'Gym',t:'gym',dur:'3x8 reps',d:'Push-up position. Lower to just above ground. Explode up and lift hands off floor. Land flat on palms. Builds upper-body explosiveness and fast-twitch muscle for clubhead speed.'},
+  {n:'Broad Jump',c:'Gym',t:'gym',dur:'3x5 reps',d:'Shoulder-width, arms up. Swing arms back, bend knees, drive feet into ground, explode horizontally. Land soft and reset. Builds hip drive and horizontal power that translates to swing speed.'},
+];
+const GA=[{n:'Back Squat — 4x5',m:'Lower body power · ground force'},{n:'Romanian Deadlift — 3x8',m:'Hip hinge · posterior chain'},{n:'Medball Rotational Slam — 3x10',m:'Rotational power · swing speed'},{n:'Russian Twist — 3x15',m:'Core rotation · obliques'},{n:'Plyo Push-Up — 3x8',m:'Upper body explosiveness'}];
+const GB=[{n:'Trap Bar Deadlift — 4x5',m:'Full body power · kinetic chain'},{n:'Split Squat — 3x8 each',m:'Hip mobility · single-leg stability'},{n:'Squat Jump — 4x6',m:'Vertical force · explosive hip drive'},{n:'Alternating Superman — 3x12',m:'Lower back · glute activation'},{n:'Broad Jump — 3x5',m:'Horizontal power · hip drive'}];
+const GC=[{n:'Hex Bar Deadlift — 4x4',m:'Max strength · ground force'},{n:'Bulgarian Split Squat — 3x8',m:'Hip mobility · balance'},{n:'Sprinter Jumps — 3x8 each',m:'Power sequence · golf kinetics'},{n:'Medball Slam — 3x10',m:'Full body power · core'},{n:'Heavy Rope Snake — 3x20s',m:'Shoulder stability · endurance'}];
+const GW=[GA,GB,GC];
+function nd(){return new Date();}
+function dw(){return nd().getDay();}
+function isGolf(){return GD.includes(dw());}
+function isGym(){return GY.includes(dw());}
+function setSyncStatus(s,msg){
+  const dot=document.getElementById('sdot');
+  const txt=document.getElementById('wtxt');
+  dot.className='sdot';
+  if(s==='syncing')dot.classList.add('syncing');
+  else if(s==='error')dot.classList.add('error');
+  txt.textContent=msg||'';
+}
+async function syncToSheets(data){
+  setSyncStatus('syncing','Syncing to Google Sheets...');
+  try{
+    await fetch(SHEET,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    setSyncStatus('ok','Synced with Google Sheets');
+    return true;
+  }catch(e){
+    setSyncStatus('error','Saved locally · sync failed');
+    return false;
+  }
+}
+async function pullSheets(){
+  setSyncStatus('syncing','Pulling from Google Sheets...');
+  showToast('Pulling from Google Sheets...','ok');
+  try{
+    await fetch(SHEET,{mode:'no-cors'});
+    setSyncStatus('ok','Synced with Google Sheets');
+    showToast('Sessions up to date','ok');
+  }catch(e){
+    setSyncStatus('error','Could not reach Google Sheets');
+    showToast('Could not reach Google Sheets','err');
+  }
+}
+function initHeader(){
+  const d=nd(),h=d.getHours();
+  const gr=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+  document.getElementById('greet').textContent=gr+', Cole';
+  document.getElementById('dline').textContent=DA[d.getDay()]+', '+MO[d.getMonth()]+' '+d.getDate();
+  const hcp=localStorage.getItem('cgc_hcp')||'5.8';
+  document.getElementById('hnum').textContent=hcp;
+  document.getElementById('hcpin').value=hcp;
+  updatePB(parseFloat(hcp));
+  const day=DA[d.getDay()];
+  const msg=isGolf()&&isGym()?day+' · Golf + Gym':isGolf()?day+' · Golf practice day':isGym()?day+' · Gym day':day+' · Rest & recovery';
+  setSyncStatus('ok',msg);
+}
+function buildStrip(){
+  const d=nd(),dow2=d.getDay();
+  const ws=new Date(d);ws.setDate(d.getDate()-dow2);
+  let h='';
+  for(let i=0;i<7;i++){
+    const dd=new Date(ws);dd.setDate(ws.getDate()+i);
+    const isT=i===dow2,isG=GD.includes(i),isY=GY.includes(i);
+    let c='dc';
+    if(isT)c+=' tod';else if(isG)c+=' gf';else if(isY)c+=' gy';
+    h+=`<div class="${c}"><div class="dl${isT?' tod':''}">${DA[i]}</div><div class="dn${isT?' tod':''}">${dd.getDate()}</div></div>`;
+  }
+  document.getElementById('wstrip').innerHTML=h;
+}
+function buildToday(){
+  const wn=Math.floor(nd().getDate()/7)%3;
+  let h='';
+  if(isGolf()){
+    h+=`<div class="st">Today's golf practice</div>`;
+    h+=`<div class="fb"><div><div class="ft">Priority: Putting & Scrambling</div><div class="fs">Your two biggest weaknesses</div></div><span class="bdg bw">Focus</span></div>`;
+    const pd=DRILLS.filter(x=>x.t==='putting').slice(0,2);
+    const cd=DRILLS.filter(x=>x.t==='chipping').slice(0,1);
+    [...pd,...cd].forEach(x=>{h+=`<div class="dc2"><div><div class="dc2n">${x.n}</div><div class="dc2m">${x.c} · ${x.dur}</div></div><span class="bdg bg">${x.c}</span></div>`;});
+  }
+  if(isGym()){
+    if(isGolf())h+=`<div class="div" style="margin:11px -13px;"></div><div class="st" style="margin-top:11px;">Today's gym session</div>`;
+    else h+=`<div class="st">Today's gym session</div>`;
+    GW[wn].forEach(x=>{h+=`<div class="gc"><div class="gn">${x.n}</div><div class="gm2">${x.m}</div></div>`;});
+  }
+  if(!isGolf()&&!isGym()){
+    h+=`<div class="st">Rest & recovery</div>`;
+    h+=`<div class="df"><div class="dft">Active recovery day</div><div class="dfc">Rest protocol</div><div class="dfd">Light walking, hip mobility, foam rolling. Review your logged sessions and plan your next practice. Good day for mental game work — visualize your pre-shot routine: assess shot elements, choose a club, visualize ball flight, see your landing spot, focused practice swing, walk in clear-headed and react to the target.</div></div>`;
+  }
+  document.getElementById('tcont').innerHTML=h;
+}
+function buildWeek(){
+  let h='';
+  for(let i=0;i<7;i++){
+    const isG=GD.includes(i),isY=GY.includes(i);
+    let p='';
+    if(isG)p+=`<span class="wp wpg">Golf</span>`;
+    if(isY)p+=`<span class="wp wpy">Gym</span>`;
+    if(!isG&&!isY)p+=`<span class="wpr">Rest</span>`;
+    const bold=i===dw()?'font-weight:700;color:var(--g);':'';
+    h+=`<div class="wr"><div class="wdl" style="${bold}">${DA[i]}</div><div>${p}</div></div>`;
+  }
+  document.getElementById('wplan').innerHTML=h;
+  const rot=[{d:'Tue',dr:['Clock Drill','21 Up/Down Drill','Tempo Swings']},{d:'Thu',dr:['Stick Stop Drill','Flamingo Drill','9-Shot Tic Tac Toe']},{d:'Sat',dr:['9-Hole Pullback Drill','Open Trail Hand Drill','Startline Gate']}];
+  let dh='';
+  rot.forEach(r=>{
+    dh+=`<div style="margin-bottom:11px;"><div class="st" style="margin-bottom:7px;">${r.d}</div>`;
+    r.dr.forEach(x=>{dh+=`<div class="dc2" style="margin-bottom:6px;"><div class="dc2n">${x}</div></div>`;});
+    dh+=`</div>`;
+  });
+  document.getElementById('wdrills').innerHTML=dh;
+}
+function buildDrills(f){
+  const list=f==='all'?DRILLS:DRILLS.filter(x=>x.t===f);
+  document.getElementById('dlist').innerHTML=list.map(x=>`<div class="df"><div class="dft">${x.n}</div><div class="dfc">${x.c} · ${x.dur}</div><div class="dfd">${x.d}</div></div>`).join('')||`<div style="color:var(--tu);font-size:12px;text-align:center;padding:16px;">No drills found</div>`;
+}
+function filt(f,btn){
+  document.querySelectorAll('.fb2').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  buildDrills(f);
+}
+function saveHcp(){
+  const v=document.getElementById('hcpin').value;
+  if(!v)return;
+  const hcp=parseFloat(v).toFixed(1);
+  localStorage.setItem('cgc_hcp',hcp);
+  document.getElementById('hnum').textContent=hcp;
+  updatePB(parseFloat(hcp));
+  showToast('Handicap updated to '+hcp,'ok');
+}
+function updatePB(hcp){
+  const pct=Math.max(0,Math.min(100,((5.8-hcp)/5.8)*100));
+  const bar=document.getElementById('hpb');
+  const val=document.getElementById('hpv');
+  if(bar)bar.style.width=pct.toFixed(1)+'%';
+  if(val)val.textContent=hcp.toFixed(1);
+}
+async function savelog(){
+  const t=document.getElementById('ltype').value;
+  const dr=document.getElementById('ldrill').value;
+  const sc=document.getElementById('lscore').value;
+  const pt=document.getElementById('lputts').value;
+  const nt=document.getElementById('lnotes').value;
+  const d=nd();
+  const dt=MO[d.getMonth()].slice(0,3)+' '+d.getDate()+', '+d.getFullYear();
+  const entry={t,dr,sc,pt,nt,dt,ts:Date.now(),synced:false};
+  const logs=JSON.parse(localStorage.getItem('cgc_logs')||'[]');
+  logs.push(entry);
+  localStorage.setItem('cgc_logs',JSON.stringify(logs));
+  ['ldrill','lscore','lputts','lnotes'].forEach(id=>{document.getElementById(id).value='';});
+  const btn=document.getElementById('savebtn');
+  btn.textContent='Syncing...';
+  const ok=await syncToSheets(entry);
+  if(ok){
+    const updated=JSON.parse(localStorage.getItem('cgc_logs')||'[]');
+    updated[updated.length-1].synced=true;
+    localStorage.setItem('cgc_logs',JSON.stringify(updated));
+    showToast('Saved & synced to Google Sheets!','ok');
+  }else{
+    showToast('Saved locally — will sync when online','err');
+  }
+  btn.textContent='Save + sync to Google Sheets';
+  buildLogHist();
+}
+function buildLogHist(){
+  const logs=JSON.parse(localStorage.getItem('cgc_logs')||'[]');
+  const el=document.getElementById('lhist');
+  if(!logs.length){el.innerHTML='<div style="font-size:12px;color:var(--tu);text-align:center;padding:14px;">No sessions logged yet</div>';return;}
+  el.innerHTML=logs.slice().reverse().slice(0,10).map(l=>`<div class="lhi"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;"><div class="lht">${l.dr||l.t||'Session'}</div><span class="lhs ${l.synced?'lhs-ok':'lhs-pending'}">${l.synced?'Synced':'Local'}</span></div><div class="lhm">${l.dt}${l.sc?' · Score: '+l.sc:''}${l.pt?' · Putts: '+l.pt:''}</div>${l.nt?`<div class="lhn">${l.nt}</div>`:''}</div>`).join('');
+}
+function showToast(msg,type){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast '+(type||'ok');t.style.display='block';
+  setTimeout(()=>{t.style.display='none';},2800);
+}
+function go(name,tabEl){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('p-'+name).classList.add('on');
+  if(tabEl)tabEl.classList.add('on');
+  else{const idx={today:0,week:1,stats:2,drills:3,log:4}[name];if(idx!==undefined)document.querySelectorAll('.tab')[idx].classList.add('on');}
+  ['today','week','stats','drills','log'].forEach(p=>{
+    const bd=document.getElementById('bn-'+p);const bl=document.getElementById('bnl-'+p);
+    if(p===name){bd.classList.add('on');bl.classList.add('on');}else{bd.classList.remove('on');bl.classList.remove('on');}
+  });
+  document.querySelector('.body').scrollTop=0;
+  if(name==='log')buildLogHist();
+  if(name==='drills')buildDrills('all');
+}
+initHeader();buildStrip();buildToday();buildWeek();buildDrills('all');buildLogHist();
+</script>
+</body>
+</html>
