@@ -197,13 +197,13 @@ html,body{background:var(--ow);margin:0;padding:0;width:100%;min-height:100vh;}
       <div class="sc"><div class="sn">1.5</div><div class="sl">Penalties</div><div class="sg2 ok">Strength</div></div>
     </div>
     <div class="st">Weakness priority</div>
-    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Putting</div><div class="dc2m">34.3 putts · 1.4 three-putts · biggest gap</div></div><span class="bdg bw">1</span></div>
-    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Scrambling</div><div class="dc2m">20% saves · target 32% · 12pt gap</div></div><span class="bdg bw">2</span></div>
-    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Grints %</div><div class="dc2m">48% par or better · target 51%</div></div><span class="bdg bw">3</span></div>
-    <div class="dc2"><div><div class="dc2n">GIR par 3s</div><div class="dc2m">36% · target 38%</div></div><span class="bdg bw">4</span></div>
+    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Putting</div><div class="dc2m">34.3 putts Â· 1.4 three-putts Â· biggest gap</div></div><span class="bdg bw">1</span></div>
+    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Scrambling</div><div class="dc2m">20% saves Â· target 32% Â· 12pt gap</div></div><span class="bdg bw">2</span></div>
+    <div class="dc2" style="margin-bottom:7px;"><div><div class="dc2n">Grints %</div><div class="dc2m">48% par or better Â· target 51%</div></div><span class="bdg bw">3</span></div>
+    <div class="dc2"><div><div class="dc2n">GIR par 3s</div><div class="dc2m">36% Â· target 38%</div></div><span class="bdg bw">4</span></div>
     <div class="st" style="margin-top:13px;">Progress toward scratch</div>
     <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-      <span style="font-size:11px;color:var(--tm);">Handicap (5.8 → 0)</span>
+      <span style="font-size:11px;color:var(--tm);">Handicap (5.8 â 0)</span>
       <span style="font-size:11px;font-weight:600;color:var(--g);" id="hpv">5.8</span>
     </div>
     <div class="pb"><div class="pf" id="hpb" style="width:0%"></div></div>
@@ -264,138 +264,198 @@ const DA=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const GD=[2,4,6],GY=[1,3,5];
 
-// PUTTING DRILLS — 10 drills, always 2 per session (biggest weakness)
+// PUTTING DRILLS â 10 drills, always 2 per session (biggest weakness)
 const PUTTING=[
   {n:'Clock Drill',dur:'30 min',d:'3 circles at 3ft/5ft/7ft with 4 balls each. Make all 4 in a row per circle. Restart on any miss. Track total putts to complete. Builds pressure putting from short range.'},
   {n:'Stick Stop Drill',dur:'20 min',d:'Stick 2ft past hole. Putt from 15-20ft. Hole=5pts, between stick and hole=3pts, past stick=1pt, short=-2pts. Race to 21. Never leave a putt short.'},
-  {n:'Ruler Drill',dur:'15 min',d:'Find a straight 5ft putt. Position ruler toward hole. Roll ball along full ruler into hole. Make 5 in a row. Trains clubface angle — controls 87% of direction.'},
+  {n:'Ruler Drill',dur:'15 min',d:'Find a straight 5ft putt. Position ruler toward hole. Roll ball along full ruler into hole. Make 5 in a row. Trains clubface angle â controls 87% of direction.'},
   {n:'10-Ball Drill',dur:'25 min',d:'Tees at 10/20/30ft, 3 balls each plus Moneyball at 20ft. Two-putt all or restart. Moneyball must finish inside 3ft then hole out. Beat your restart score daily.'},
   {n:'Jordan Spieth Drill',dur:'20 min',d:'Balls 20ft from green edge. Stop first ball near edge without touching fringe. Each next ball must finish shorter. Count consecutive successes and beat your record.'},
   {n:'9-Hole Pullback Drill',dur:'25 min',d:'Start 10ft. Miss = pull one putter length further. Play from 10/20/30ft three times. 1 putt=birdie, 2=par, 3=bogey. Improve your score week to week.'},
   {n:'Mushroom Drill',dur:'20 min',d:'4-footers. 3 balls straight uphill, 1 around hole. Make 3 uphill then right, back to 3 uphill then left. Alternating until done. Builds confidence on breaking putts.'},
-  {n:'17 Drill',dur:'20 min',d:'3 holes 20ft apart. 3 balls at 5/10/15ft from separate holes. Putt each toward a different hole. 9 total putts. Tour average is 17 — beat it consistently.'},
+  {n:'17 Drill',dur:'20 min',d:'3 holes 20ft apart. 3 balls at 5/10/15ft from separate holes. Putt each toward a different hole. 9 total putts. Tour average is 17 â beat it consistently.'},
   {n:'Towel Tuck Drill',dur:'15 min',d:'Towel around your back held by both armpits. Make putts keeping towel in. If it falls your stroke disconnected. Builds arm-body connection for a consistent pendulum.'},
   {n:'Spiral Drill',dur:'15 min',d:'12 balls in a spiral from 4ft to 15ft in 1ft increments. 1 point per make, lose 2 for a 3-putt. Finish with positive points. Assesses your full midrange putting range.'},
 ];
 
-// CHIPPING DRILLS — 7 drills
+// CHIPPING DRILLS â 7 drills
 const CHIPPING=[
   {n:'21 Up/Down Drill',dur:'25 min',d:'Drop ball randomly within 30 yards. Any club. Get up-and-down. 9 holes. Score 21+ to beat tour scrambling average. Your #1 priority chipping drill.'},
-  {n:'Flamingo Drill',dur:'15 min',d:'Drop trail foot back so all weight loads on lead foot. Hit chips maintaining forward pressure. If you shift backward you fall — trail foot is not there.'},
+  {n:'Flamingo Drill',dur:'15 min',d:'Drop trail foot back so all weight loads on lead foot. Hit chips maintaining forward pressure. If you shift backward you fall â trail foot is not there.'},
   {n:'Game On',dur:'25 min',d:'40 random chip shots to different holes, distances, slopes, lies. Within 6ft = win. Track wins/losses like a season record. Forces you to handle every situation.'},
   {n:'Chip-a-Coin Drill',dur:'15 min',d:'Coin 1-2 inches in front of ball. Practice chips moving the coin after ball contact. Ensures you hit down and through for proper backspin and trajectory.'},
   {n:'3/1 Hole',dur:'20 min',d:'9 spots around green. Hit low-loft (8i/7i), mid-loft (PW), and high-loft (LW/SW) from each. Closest club wins the hole. Master multiple shot types.'},
   {n:'Lead Hip Stick Drill',dur:'15 min',d:'Alignment rod on wedge extending 2-3ft past grip against lead hip. Flip wrists and rod hits your side. Forces proper body rotation through impact.'},
-  {n:'Open Trail Hand Drill',dur:'15 min',d:'Remove trail hand from grip, rest palm on shaft. Feel constant palm-to-shaft pressure. If you flip, connection breaks. Hit 20 chips — eliminates the flip.'},
+  {n:'Open Trail Hand Drill',dur:'15 min',d:'Remove trail hand from grip, rest palm on shaft. Feel constant palm-to-shaft pressure. If you flip, connection breaks. Hit 20 chips â eliminates the flip.'},
 ];
 
-// SWING DRILLS — 5 drills
+// SWING DRILLS â 5 drills
 const SWING=[
   {n:'9-Shot Tic Tac Toe',dur:'30 min',d:'Hit all 9 ball flights: Low/Mid/High Draw, Straight, and Fade. Calibrates face-to-path, swing path, and low-point control. Used by Tiger Woods with his father.'},
   {n:'Tempo Swings',dur:'20 min',d:'Metronome app at 64bpm. Club crosses impact zone on each beep. Start small, build to 3/4 speed. Hit shots imitating that tempo. Most repeatable swing rhythm drill.'},
-  {n:'Startline Gate',dur:'20 min',d:'Two rods 1ft apart as a gate 6ft in front of ball. 30 balls alternating left/right/center start lines — cannot repeat same choice twice. Score out of 30.'},
+  {n:'Startline Gate',dur:'20 min',d:'Two rods 1ft apart as a gate 6ft in front of ball. 30 balls alternating left/right/center start lines â cannot repeat same choice twice. Score out of 30.'},
   {n:'Under Bridge Over Tree',dur:'20 min',d:'Alternate 3/4 swing low shots and high shots through your bag. Low: ball back, drive down, low finish. High: ball forward, sweepy, high finish. Builds trajectory control.'},
-  {n:'Lowpoint Towel Drill',dur:'20 min',d:'Flat towel 2 inches behind ball. 7 iron. Goal: ball-first contact, ground contact in front of ball — not towel. 20 shots, track successes.'},
+  {n:'Lowpoint Towel Drill',dur:'20 min',d:'Flat towel 2 inches behind ball. 7 iron. Goal: ball-first contact, ground contact in front of ball â not towel. 20 shots, track successes.'},
 ];
 
-// GYM PROGRAMS — 8 fully balanced weeks
+// GYM PROGRAMS â 8 fully balanced weeks
 // Each program hits all 7 patterns: Hip Hinge, Squat, H-Push, H-Pull, V-Pull, V-Push, Core/Power
 // Balanced push/pull. Golf-friendly. Builds aesthetic physique + athletic strength.
 const GYM_PROGRAMS=[
   {
-    name:'Power Foundation A',
-    note:'Hip hinge + squat + push/pull balance + core power',
+    name:'Power Foundation',
+    focus:'Lower body power + rotational core',
     exercises:[
-      {n:'Back Squat — 4x5',m:'Quads · glutes · core',p:'Squat',golf:'Builds ground force — the #1 driver of swing power'},
-      {n:'Romanian Deadlift — 3x8',m:'Hamstrings · glutes · lower back',p:'Hip Hinge',golf:'Hip hinge pattern directly mirrors downswing mechanics'},
-      {n:'Dumbbell Row — 3x10 each',m:'Lats · mid back · biceps · rear delts',p:'H-Pull',golf:'Balances pressing; builds postural muscles for swing'},
-      {n:'Dumbbell Bench Press — 3x8',m:'Chest · shoulders · triceps',p:'H-Push',golf:'Moderate volume only — pair always with rowing'},
-      {n:'Lat Pulldown — 3x10',m:'Lats · biceps · upper back',p:'V-Pull',golf:'Builds the lat engagement crucial for a powerful downswing'},
-      {n:'Medball Rotational Slam — 3x10',m:'Core · obliques · shoulders · glutes',p:'Power',golf:'Direct rotational power transfer to swing speed'},
+      {n:'Back Squat — 4x5',m:'Squat · quads, glutes — ground force for swing'},
+      {n:'Romanian Deadlift — 3x8',m:'Hip hinge · hamstrings, glutes — swing stability'},
+      {n:'Dumbbell Bench Press — 3x10',m:'Horizontal push · chest, shoulders, triceps'},
+      {n:'Pendlay Row — 3x8',m:'Horizontal pull · lats, upper back, rear delts'},
+      {n:'Overhead Press — 3x8',m:'Vertical push · shoulders, triceps, upper traps'},
+      {n:'Lat Pulldown — 3x10',m:'Vertical pull · lats, biceps, upper back'},
+      {n:'Medball Rotational Throw — 3x8 each',m:'Core rotation · obliques — direct swing power'},
     ]
   },
   {
-    name:'Explosive Strength B',
-    note:'Deadlift variation + explosive jumps + push/pull + shoulder press',
+    name:'Explosive Strength',
+    focus:'Hip drive + full upper body balance',
     exercises:[
-      {n:'Trap Bar Deadlift — 4x5',m:'Glutes · hamstrings · quads · back',p:'Hip Hinge',golf:'Full kinetic chain — most athletic deadlift variation'},
-      {n:'Goblet Squat — 3x10',m:'Quads · glutes · core · upper back',p:'Squat',golf:'Hip mobility + upright torso = great for golf posture'},
-      {n:'Chin-Ups — 3x8',m:'Lats · biceps · rear delts',p:'V-Pull',golf:'Upper back strength for backswing width and stability'},
-      {n:'Arnold Press — 3x10',m:'Shoulders · triceps · upper chest',p:'V-Push',golf:'Shoulder health and stability; moderate volume is fine'},
-      {n:'Inverted Row — 3x12',m:'Mid back · lats · rear delts · biceps',p:'H-Pull',golf:'Builds posture muscles; counteracts bench pressing'},
-      {n:'Squat Jump — 4x6',m:'Quads · glutes · calves',p:'Power',golf:'Vertical ground force — directly increases swing speed'},
+      {n:'Trap Bar Deadlift — 4x5',m:'Hip hinge · full posterior chain, glutes'},
+      {n:'Goblet Squat — 3x10',m:'Squat · quads, glutes, hip mobility'},
+      {n:'Dips — 3x10',m:'Horizontal push · chest, triceps, shoulders'},
+      {n:'T-Bar Row — 3x8',m:'Horizontal pull · middle back, lats, biceps'},
+      {n:'Arnold Press — 3x10',m:'Vertical push · full shoulder development'},
+      {n:'Pull-Ups — 3x8',m:'Vertical pull · lats, biceps, upper back'},
+      {n:'Squat Jump — 4x6',m:'Explosive power · glutes, quads — swing speed'},
     ]
   },
   {
-    name:'Athletic Power C',
-    note:'Unilateral focus + rotational + overhead + pulls',
+    name:'Athletic Power',
+    focus:'Unilateral strength + explosiveness',
     exercises:[
-      {n:'Single-Leg RDL — 3x8 each',m:'Hamstrings · glutes · hip stabilizers · core',p:'Hip Hinge',golf:'Single-leg stability mimics the golf swing weight shift'},
-      {n:'Bulgarian Split Squat — 4x8 each',m:'Quads · glutes · hip flexors',p:'Squat',golf:'Hip mobility + single-leg power = athletic golf base'},
-      {n:'Pendlay Row — 3x6',m:'Lats · upper back · traps · rear delts',p:'H-Pull',golf:'Explosive pulling builds lat power for downswing'},
-      {n:'Landmine Press — 3x10 each',m:'Shoulders · chest · triceps · core',p:'V-Push',golf:'Diagonal pressing pattern aligns with swing plane'},
-      {n:'Face Pull — 3x15',m:'Rear delts · rotator cuff · traps · upper back',p:'V-Pull',golf:'Shoulder health essential — protects rotator cuff'},
-      {n:'Sprinter Jumps — 3x8 each',m:'Glutes · hamstrings · quads · core',p:'Power',golf:'Mimics golf kinetic sequence — hip drive and leg power'},
+      {n:'Bulgarian Split Squat — 3x8 each',m:'Squat · quads, glutes, hip mobility — golf balance'},
+      {n:'Single-Leg Romanian Deadlift — 3x8 each',m:'Hip hinge · hamstrings, glutes, stabilizers'},
+      {n:'Close-Grip Bench Press — 3x8',m:'Horizontal push · triceps, chest — arm speed'},
+      {n:'Chest-Supported Row — 3x10',m:'Horizontal pull · middle back, lats, posture'},
+      {n:'Landmine Press — 3x10 each',m:'Vertical push · shoulders, core anti-rotation'},
+      {n:'Lat Pulldown — 3x10',m:'Vertical pull · lats, biceps, upper back'},
+      {n:'Sprinter Jumps — 3x8 each',m:'Explosive · mimics golf kinetic sequence'},
     ]
   },
   {
-    name:'Strength Hypertrophy D',
-    note:'Volume focus for muscle building + aesthetics + hip thrust for glutes',
+    name:'Rotational Power',
+    focus:'Anti-rotation core + hip hinge',
     exercises:[
-      {n:'Barbell Hip Thrust — 4x10',m:'Glutes · hamstrings · core',p:'Hip Hinge',golf:'Maximum glute activation — drives hip rotation in swing'},
-      {n:'Hack Squat or Front Squat — 4x8',m:'Quads · glutes',p:'Squat',golf:'Quad-dominant strength for a stable, powerful base'},
-      {n:'T-Bar Row — 3x10',m:'Mid back · lats · biceps · rear delts',p:'H-Pull',golf:'Thick back development for postural strength'},
-      {n:'Dips — 3x10',m:'Chest · triceps · shoulders',p:'H-Push',golf:'Tricep and chest strength; keep volume balanced with rows'},
-      {n:'Lat Pulldown — 3x12',m:'Lats · biceps · upper back',p:'V-Pull',golf:'Lat width and strength for powerful downswing initiation'},
-      {n:'Broad Jump — 3x5',m:'Glutes · quads · hamstrings · calves',p:'Power',golf:'Horizontal power output directly translates to driving distance'},
+      {n:'Barbell Hip Thrust — 4x8',m:'Hip hinge · glutes, hamstrings — hip drive power'},
+      {n:'Landmine Squat — 3x10',m:'Squat · quads, glutes, core stability'},
+      {n:'Dumbbell Floor Press — 3x10',m:'Horizontal push · chest, triceps — shoulder safe'},
+      {n:'Inverted Row — 3x12',m:'Horizontal pull · lats, middle back, rear delts'},
+      {n:'Push Press — 3x6',m:'Vertical push · explosive shoulders, triceps, legs'},
+      {n:'Face Pull — 3x15',m:'Vertical pull · rear delts, rotator cuff — injury prevention'},
+      {n:'Pallof Press — 3x12 each',m:'Core anti-rotation · obliques — swing stability'},
     ]
   },
   {
-    name:'Rotational Power E',
-    note:'Olympic-style + rotation + pull emphasis + shoulder stability',
+    name:'Speed & Stability',
+    focus:'Fast-twitch activation + shoulder health',
     exercises:[
-      {n:'Hang Clean — 3x4',m:'Glutes · hamstrings · traps · shoulders · core',p:'Power',golf:'Triple extension pattern is identical to the golf downswing'},
-      {n:'Sumo Deadlift — 4x5',m:'Glutes · inner thighs · hamstrings · lower back',p:'Hip Hinge',golf:'Wide stance builds hip strength and adductor flexibility'},
-      {n:'Cossack Squat — 3x8 each',m:'Quads · glutes · adductors · hips',p:'Squat',golf:'Best squat variation for hip mobility — critical for rotation'},
-      {n:'Chest-Supported Row — 3x10',m:'Mid back · lats · rear delts · biceps',p:'H-Pull',golf:'No lower back fatigue — pure upper back development'},
-      {n:'Medball Rotational Throw — 3x8 each',m:'Obliques · hips · shoulders · core',p:'Core/Rotation',golf:'The single most golf-specific power exercise in existence'},
-      {n:'Face Pull — 3x15',m:'Rear delts · rotator cuff · upper back',p:'Shoulder Health',golf:'Non-negotiable for rotator cuff health in a golfer'},
+      {n:'Sumo Deadlift — 4x5',m:'Hip hinge · glutes, adductors, hamstrings'},
+      {n:'Step-Ups with Drive — 3x10 each',m:'Squat · quads, glutes, single-leg power'},
+      {n:'Incline Dumbbell Press — 3x10',m:'Horizontal push · upper chest, front delts'},
+      {n:'Meadows Row — 3x10 each',m:'Horizontal pull · lats, rear delts'},
+      {n:'Overhead Press — 3x8',m:'Vertical push · shoulders, upper traps'},
+      {n:'Pull-Ups — 3x8',m:'Vertical pull · lats, biceps, upper back'},
+      {n:'Battle Ropes — 3x30s',m:'Explosive endurance · shoulders, core, conditioning'},
     ]
   },
   {
-    name:'Strength Endurance F',
-    note:'Step-ups + good morning + pushing + pulling + core stability',
+    name:'Strength Endurance',
+    focus:'Muscle development + core power',
     exercises:[
-      {n:'Good Morning — 3x10',m:'Hamstrings · glutes · lower back · core',p:'Hip Hinge',golf:'Teaches the forward spine angle held throughout the golf swing'},
-      {n:'Step-Ups — 3x10 each',m:'Quads · glutes · hamstrings · calves · core',p:'Squat',golf:'Single-leg power and balance — mirrors weight transfer in swing'},
-      {n:'Seal Row — 3x10',m:'Lats · mid back · biceps',p:'H-Pull',golf:'Strict rowing form; eliminates momentum — pure back strength'},
-      {n:'Close-Grip Bench Press — 3x8',m:'Triceps · chest · shoulders',p:'H-Push',golf:'Tricep-dominant pressing keeps chest from overtightening'},
-      {n:'Pull-Ups — 3x8',m:'Lats · biceps · upper back · core',p:'V-Pull',golf:'Best lat exercise — essential for downswing power and width'},
-      {n:'Pallof Press — 3x12 each',m:'Obliques · transverse abs · core',p:'Core Stability',golf:'Anti-rotation core strength — stabilizes spine during swing'},
+      {n:'Hack Squat — 3x10',m:'Squat · quad emphasis, glutes'},
+      {n:'Good Morning — 3x10',m:'Hip hinge · hamstrings, glutes, lower back flexibility'},
+      {n:'Decline Bench Press — 3x10',m:'Horizontal push · lower chest, triceps'},
+      {n:'Seal Row — 3x10',m:'Horizontal pull · lats, middle back, no momentum'},
+      {n:'Arnold Press — 3x10',m:'Vertical push · full shoulder development'},
+      {n:'Lat Pulldown — 3x12',m:'Vertical pull · lats, biceps, upper back'},
+      {n:'Medball Slam — 3x10',m:'Core + explosive · full body power generation'},
     ]
   },
   {
-    name:'Speed and Power G',
-    note:'Glute focus + sled + overhead + explosive upper + rotational',
+    name:'Olympic Power',
+    focus:'Full body explosiveness + vertical push',
     exercises:[
-      {n:'Barbell Hip Thrust — 4x8',m:'Glutes · hamstrings · core',p:'Hip Hinge',golf:'Peak glute strength drives hip clearance through impact'},
-      {n:'Sled Push — 3x20m',m:'Quads · glutes · calves · core',p:'Squat/Power',golf:'Pure lower-body drive; no spine load — very golf-safe'},
-      {n:'Meadows Row — 3x10 each',m:'Lats · rear delts · traps',p:'H-Pull',golf:'Single-arm rowing builds rotational pulling strength'},
-      {n:'Dumbbell Shoulder Press — 3x10',m:'Shoulders · triceps · upper traps',p:'V-Push',golf:'Shoulder strength and stability; dumbbells allow natural ROM'},
-      {n:'Lat Pulldown — 3x10',m:'Lats · biceps · upper back',p:'V-Pull',golf:'Consistent lat development week over week'},
-      {n:'Medball Slam — 3x10',m:'Core · shoulders · lats · glutes · quads',p:'Power',golf:'Full-body explosive power from top of swing to impact'},
+      {n:'Hang Clean — 4x4',m:'Hip hinge + explosive · glutes, traps, full chain'},
+      {n:'Front Squat — 3x5',m:'Squat · quads, core, upright posture'},
+      {n:'Push Press — 3x6',m:'Vertical push · explosive shoulders, triceps, leg drive'},
+      {n:'Pendlay Row — 3x6',m:'Horizontal pull · lats, upper back, rear delts'},
+      {n:'Weighted Dips — 3x6',m:'Horizontal push · chest, triceps — strength'},
+      {n:'Pull-Ups — 3x8',m:'Vertical pull · lats, biceps, upper back'},
+      {n:'Broad Jump — 3x5',m:'Explosive · hip drive, horizontal power'},
     ]
   },
   {
-    name:'Full Body Peak H',
-    note:'Olympic lift + squat + horizontal push/pull balance + arms + core',
+    name:'Posterior Chain Focus',
+    focus:'Glutes, hamstrings, upper back',
     exercises:[
-      {n:'Deficit Deadlift — 4x4',m:'Glutes · hamstrings · quads · lower back',p:'Hip Hinge',golf:'Increased range of motion — builds posterior chain from bottom up'},
-      {n:'Landmine Squat — 3x10',m:'Quads · glutes · core',p:'Squat',golf:'Angled loading is easier on spine; keeps athletic posture'},
-      {n:'Pendlay Row — 3x6',m:'Lats · upper back · traps · rear delts',p:'H-Pull',golf:'Explosive horizontal pull builds lat power for downswing'},
-      {n:'Dumbbell Floor Press — 3x10',m:'Chest · triceps · shoulders',p:'H-Push',golf:'Floor press limits range — protects shoulders while building chest'},
-      {n:'Cable Rotation — 3x12 each',m:'Obliques · core · hips · shoulders',p:'Core/Rotation',golf:'Isolated rotational strength at swing speed — very specific'},
-      {n:'Thrusters — 3x8',m:'Quads · glutes · shoulders · triceps · core',p:'V-Push+Squat',golf:'Full-body compound — builds total athletic power output'},
+      {n:'Deficit Deadlift — 4x5',m:'Hip hinge · glutes, hamstrings — extended range'},
+      {n:'Cossack Squat — 3x8 each',m:'Squat · adductors, hips, lateral mobility — great for swing'},
+      {n:'Dumbbell Bench Press — 3x10',m:'Horizontal push · chest, shoulders, triceps'},
+      {n:'T-Bar Row — 3x8',m:'Horizontal pull · middle back, lats, biceps'},
+      {n:'Overhead Press — 3x8',m:'Vertical push · shoulders, upper traps'},
+      {n:'Face Pull — 3x15',m:'Vertical pull · rear delts, rotator cuff, posture'},
+      {n:'Nordic Hamstring Curl — 3x6',m:'Hamstring eccentric strength · injury prevention'},
+    ]
+  },
+  {
+    name:'Hypertrophy Block',
+    focus:'Muscle development all major groups',
+    exercises:[
+      {n:'Barbell Hip Thrust — 4x10',m:'Hip hinge · glutes, hamstrings — glute development'},
+      {n:'Zercher Squat — 3x8',m:'Squat · quads, glutes, core, upper back'},
+      {n:'Close-Grip Bench Press — 3x10',m:'Horizontal push · triceps, chest'},
+      {n:'Chest-Supported Row — 3x12',m:'Horizontal pull · middle back, lats, rear delts'},
+      {n:'Arnold Press — 3x12',m:'Vertical push · full shoulder development'},
+      {n:'Lat Pulldown — 3x12',m:'Vertical pull · lats, biceps'},
+      {n:'Kettlebell Turkish Get-Up — 3x3 each',m:'Core + stability · shoulders, glutes, coordination'},
+    ]
+  },
+  {
+    name:'Conditioning & Power',
+    focus:'Athletic conditioning + explosive strength',
+    exercises:[
+      {n:'Sled Push — 4x20m',m:'Squat · quads, glutes, conditioning — no spinal compression'},
+      {n:'Single-Leg RDL — 3x8 each',m:'Hip hinge · hamstrings, glutes, balance'},
+      {n:'Dips — 3x10',m:'Horizontal push · chest, triceps, shoulders'},
+      {n:'Inverted Row — 3x12',m:'Horizontal pull · lats, middle back, core'},
+      {n:'Landmine Press — 3x10 each',m:'Vertical push · shoulders, core stability'},
+      {n:'Pull-Ups — 3x10',m:'Vertical pull · lats, biceps, upper back'},
+      {n:'Man Makers — 3x8',m:'Full body explosive · chest, shoulders, back, core, legs'},
+    ]
+  },
+  {
+    name:'Mobility & Strength',
+    focus:'Hip mobility + thoracic health for golf',
+    exercises:[
+      {n:'Goblet Squat — 3x12',m:'Squat · quads, glutes, hip mobility — opens hips for swing'},
+      {n:'Good Morning — 3x10',m:'Hip hinge · hamstrings, lower back flexibility'},
+      {n:'Dumbbell Floor Press — 3x12',m:'Horizontal push · chest, triceps — shoulder safe'},
+      {n:'Chest-Supported Row — 3x12',m:'Horizontal pull · middle back — corrects posture'},
+      {n:'Overhead Press — 3x10',m:'Vertical push · shoulders, thoracic extension'},
+      {n:'Face Pull — 3x20',m:'Vertical pull · rear delts, rotator cuff — shoulder health'},
+      {n:'Pallof Press — 3x15 each',m:'Core anti-rotation · directly trains swing stability'},
+    ]
+  },
+  {
+    name:'Max Strength',
+    focus:'Peak strength all 7 movement patterns',
+    exercises:[
+      {n:'Hex Bar Deadlift — 5x3',m:'Hip hinge · max strength, full posterior chain'},
+      {n:'Back Squat — 5x3',m:'Squat · max lower body strength, ground force'},
+      {n:'Weighted Dips — 4x5',m:'Horizontal push · chest, triceps — max strength'},
+      {n:'Weighted Pull-Ups — 4x5',m:'Vertical pull · lats, biceps — max pulling strength'},
+      {n:'Push Press — 4x4',m:'Vertical push · explosive overhead max strength'},
+      {n:'Pendlay Row — 4x5',m:'Horizontal pull · upper back max strength'},
+      {n:'Kettlebell Snatch — 3x6 each',m:'Explosive full body · glutes, shoulders, coordination'},
     ]
   },
 ];
@@ -413,7 +473,7 @@ const ALL_DRILLS=[
   {n:'Towel Tuck Drill',c:'Putting',t:'putting',dur:'15 min',d:'Towel around your back held by both armpits. Make putts keeping towel in. If it falls your stroke disconnected. Builds arm-body connection.'},
   {n:'Spiral Drill',c:'Putting',t:'putting',dur:'15 min',d:'12 balls in a spiral from 4ft to 15ft in 1ft increments. 1 point per make, lose 2 for a 3-putt. Finish with positive points.'},
   {n:'21 Up/Down Drill',c:'Chipping',t:'chipping',dur:'25 min',d:'Drop ball randomly within 30 yards. Any club. Get up-and-down. 9 holes. Score 21+ to beat tour scrambling average. Your #1 chipping priority.'},
-  {n:'Flamingo Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Drop trail foot back so weight loads on lead foot. Hit chips maintaining forward pressure. If you shift backward you fall — trail foot is gone.'},
+  {n:'Flamingo Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Drop trail foot back so weight loads on lead foot. Hit chips maintaining forward pressure. If you shift backward you fall â trail foot is gone.'},
   {n:'Game On',c:'Chipping',t:'chipping',dur:'25 min',d:'40 random chip shots to different holes, distances, slopes, lies. Within 6ft = win. Track wins/losses like a season. Forces you to handle every situation.'},
   {n:'Chip-a-Coin Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Coin 1-2 inches in front of ball. Practice chips moving the coin after ball contact. Ensures you hit down and through for proper backspin.'},
   {n:'3/1 Hole',c:'Chipping',t:'chipping',dur:'20 min',d:'9 spots around green. Hit low-loft (8i/7i), mid-loft (PW), and high-loft (LW/SW) from each. Closest club wins the hole.'},
@@ -423,15 +483,15 @@ const ALL_DRILLS=[
   {n:'Tempo Swings',c:'Full swing',t:'swing',dur:'20 min',d:'Metronome app at 64bpm. Club crosses impact zone on each beep. Start small, build to 3/4 speed. Hit shots imitating that tempo.'},
   {n:'Startline Gate',c:'Full swing',t:'swing',dur:'20 min',d:'Two rods 1ft apart as a gate 6ft in front of ball. 30 balls alternating left/right/center start lines. Cannot repeat same choice twice.'},
   {n:'Under Bridge Over Tree',c:'Full swing',t:'swing',dur:'20 min',d:'Alternate 3/4 swing low shots and high shots through your bag. Builds trajectory control essential for on-course situations.'},
-  {n:'Lowpoint Towel Drill',c:'Full swing',t:'swing',dur:'20 min',d:'Flat towel 2 inches behind ball. 7 iron. Goal: ball-first contact, ground contact in front of ball — not towel. 20 shots.'},
+  {n:'Lowpoint Towel Drill',c:'Full swing',t:'swing',dur:'20 min',d:'Flat towel 2 inches behind ball. 7 iron. Goal: ball-first contact, ground contact in front of ball â not towel. 20 shots.'},
   {n:'Back Squat',c:'Gym',t:'gym',dur:'4x5',d:'Barbell on upper traps. Brace core, push knees out, descend to parallel. Drive through heels. Trains exact ground force pattern used in the golf downswing. Foundation of lower body power.'},
   {n:'Romanian Deadlift',c:'Gym',t:'gym',dur:'3x8',d:'Barbell at hips, soft knees. Hinge at hips pushing them back. Feel hamstring stretch, drive hips forward. Builds hip hinge and posterior chain strength essential for swing stability.'},
-  {n:'Barbell Hip Thrust',c:'Gym',t:'gym',dur:'4x10',d:'Upper back on bench, barbell across hips. Drive hips up explosively, squeeze glutes at top. Best glute exercise — directly drives hip rotation through impact. Non-negotiable for a golfer.'},
-  {n:'Trap Bar Deadlift',c:'Gym',t:'gym',dur:'4x5',d:'Neutral handles allow upright torso. Drive through floor. Most athletic deadlift variation — full kinetic chain power with reduced lower back stress. Great for golfers.'},
+  {n:'Barbell Hip Thrust',c:'Gym',t:'gym',dur:'4x10',d:'Upper back on bench, barbell across hips. Drive hips up explosively, squeeze glutes at top. Best glute exercise â directly drives hip rotation through impact. Non-negotiable for a golfer.'},
+  {n:'Trap Bar Deadlift',c:'Gym',t:'gym',dur:'4x5',d:'Neutral handles allow upright torso. Drive through floor. Most athletic deadlift variation â full kinetic chain power with reduced lower back stress. Great for golfers.'},
   {n:'Single-Leg RDL',c:'Gym',t:'gym',dur:'3x8 each',d:'Stand on one leg, hinge at hip keeping back flat. Feel hamstring stretch, drive hip forward. Builds single-leg stability that mirrors the weight shift in the golf swing.'},
-  {n:'Bulgarian Split Squat',c:'Gym',t:'gym',dur:'4x8 each',d:'Rear foot elevated, front foot forward. Descend until front thigh is parallel. Builds hip mobility, single-leg power, and balance — the athletic base for a repeatable swing.'},
+  {n:'Bulgarian Split Squat',c:'Gym',t:'gym',dur:'4x8 each',d:'Rear foot elevated, front foot forward. Descend until front thigh is parallel. Builds hip mobility, single-leg power, and balance â the athletic base for a repeatable swing.'},
   {n:'Goblet Squat',c:'Gym',t:'gym',dur:'3x10',d:'Hold dumbbell at chest. Squat deep keeping torso upright. Builds hip mobility and quad strength while reinforcing good posture. Great warm-up or accessory squat.'},
-  {n:'Cossack Squat',c:'Gym',t:'gym',dur:'3x8 each',d:'Wide stance, shift weight to one side descending into a deep lateral squat. Other leg straight. Best exercise for hip and adductor mobility — critical for full rotation in the swing.'},
+  {n:'Cossack Squat',c:'Gym',t:'gym',dur:'3x8 each',d:'Wide stance, shift weight to one side descending into a deep lateral squat. Other leg straight. Best exercise for hip and adductor mobility â critical for full rotation in the swing.'},
   {n:'Good Morning',c:'Gym',t:'gym',dur:'3x10',d:'Bar on upper traps, hinge at hips keeping back flat. Feel hamstring and glute stretch. Teaches and reinforces the forward spine angle held throughout the entire golf swing.'},
   {n:'Sumo Deadlift',c:'Gym',t:'gym',dur:'4x5',d:'Wide stance, toes pointed out. Pull with glutes and hips. Builds glute and inner thigh (adductor) strength. Wide stance can improve hip mobility and lateral stability for golf.'},
   {n:'Step-Ups',c:'Gym',t:'gym',dur:'3x10 each',d:'Step onto box with one foot, drive through heel to stand. Single-leg power and balance exercise. Mirrors the rotational weight transfer of the golf swing. Calves, quads, glutes.'},
@@ -439,7 +499,7 @@ const ALL_DRILLS=[
   {n:'Pull-Ups',c:'Gym',t:'gym',dur:'3x8',d:'Full hang, pull chin above bar. Best lat and upper back exercise. Builds the pulling strength and lat engagement critical for a powerful, wide downswing. Add weight as you progress.'},
   {n:'Chin-Ups',c:'Gym',t:'gym',dur:'3x8',d:'Underhand grip, pull chin above bar. More bicep involvement than pull-ups. Builds upper back thickness, arm strength, and the postural muscles needed for swing stability.'},
   {n:'T-Bar Row',c:'Gym',t:'gym',dur:'3x10',d:'Hinged over T-bar, row to chest. Builds thick mid back, lats, and rear delts. Postural strength from rowing directly supports the spine angle held through impact.'},
-  {n:'Chest-Supported Row',c:'Gym',t:'gym',dur:'3x10',d:'Chest on incline bench, row dumbbells. Eliminates lower back fatigue. Pure upper back development — rear delts, lats, mid traps. Excellent for posture and shoulder health.'},
+  {n:'Chest-Supported Row',c:'Gym',t:'gym',dur:'3x10',d:'Chest on incline bench, row dumbbells. Eliminates lower back fatigue. Pure upper back development â rear delts, lats, mid traps. Excellent for posture and shoulder health.'},
   {n:'Pendlay Row',c:'Gym',t:'gym',dur:'3x6',d:'Bar on floor each rep. Explosive horizontal pull from dead stop. Builds lat power and upper back strength. The explosive nature directly transfers to downswing power.'},
   {n:'Meadows Row',c:'Gym',t:'gym',dur:'3x10 each',d:'Single-arm landmine row pulling to hip. Builds lat and rear delt strength through a rotational arc. Single-arm work directly mirrors the asymmetric demands of the golf swing.'},
   {n:'Inverted Row',c:'Gym',t:'gym',dur:'3x12',d:'Bar at waist height, hang underneath, pull chest to bar. Bodyweight horizontal row. Excellent for posture, rear delt, and upper back. Counteracts all pressing exercises.'},
@@ -447,24 +507,24 @@ const ALL_DRILLS=[
   {n:'Dumbbell Bench Press',c:'Gym',t:'gym',dur:'3x8-10',d:'Dumbbells allow natural wrist rotation. Press to full extension, lower with control. Builds chest, shoulder, and tricep strength. Keep volume balanced with rowing.'},
   {n:'Dips',c:'Gym',t:'gym',dur:'3x10',d:'Parallel bars, lower until elbows at 90 degrees, press back up. Builds chest (lean forward), triceps, and shoulders. Strong triceps contribute to lag and release in the swing.'},
   {n:'Close-Grip Bench Press',c:'Gym',t:'gym',dur:'3x8',d:'Narrow grip, elbows tucked. Primarily trains triceps, secondarily chest and shoulders. Strong triceps help maintain wrist angle and improve club release through impact.'},
-  {n:'Dumbbell Floor Press',c:'Gym',t:'gym',dur:'3x10',d:'Lying on floor with dumbbells. Press to full extension. Floor limits range of motion — protects shoulders. Great pressing variation with less chest-tightening effect.'},
-  {n:'Landmine Press',c:'Gym',t:'gym',dur:'3x10 each',d:'Single-arm press at an angle from chest. Diagonal pressing pattern aligns with natural shoulder movement. Very golf-friendly pressing variation — shoulder-safe and core-activating.'},
+  {n:'Dumbbell Floor Press',c:'Gym',t:'gym',dur:'3x10',d:'Lying on floor with dumbbells. Press to full extension. Floor limits range of motion â protects shoulders. Great pressing variation with less chest-tightening effect.'},
+  {n:'Landmine Press',c:'Gym',t:'gym',dur:'3x10 each',d:'Single-arm press at an angle from chest. Diagonal pressing pattern aligns with natural shoulder movement. Very golf-friendly pressing variation â shoulder-safe and core-activating.'},
   {n:'Arnold Press',c:'Gym',t:'gym',dur:'3x10',d:'Start with palms facing you, rotate as you press overhead. Full shoulder development across all three deltoid heads. Excellent for aesthetic, round shoulder development.'},
   {n:'Dumbbell Shoulder Press',c:'Gym',t:'gym',dur:'3x10',d:'Seated or standing, press dumbbells overhead. Natural wrist rotation reduces shoulder stress. Builds shoulder size and strength. Always balance with lat pulldowns or pull-ups.'},
   {n:'Thrusters',c:'Gym',t:'gym',dur:'3x8',d:'Front squat straight into overhead press in one movement. Full-body explosive compound lift. Builds quad, glute, shoulder, and tricep strength simultaneously. Great for athleticism.'},
   {n:'Medball Rotational Throw',c:'Gym',t:'gym',dur:'3x8 each',d:'Stand sideways to wall, rotate and throw ball explosively. This is the single most golf-specific power exercise. Trains the exact rotational pattern of the downswing at speed.'},
   {n:'Cable Rotation',c:'Gym',t:'gym',dur:'3x12 each',d:'Stand sideways to cable, rotate through full range. Builds oblique and hip rotational strength at controlled speed. Directly translates to core stability through the golf swing.'},
   {n:'Pallof Press',c:'Gym',t:'gym',dur:'3x12 each',d:'Cable at chest height, press straight out while resisting rotation. Trains anti-rotation core stability. Builds the spinal stability that keeps your swing on plane under fatigue.'},
-  {n:'Hang Clean',c:'Gym',t:'gym',dur:'3x4',d:'Bar at hip height, explosive triple extension — hips, knees, ankles — catching in front rack. The kinetic sequence is virtually identical to the golf downswing. Builds explosive power.'},
-  {n:'Squat Jump',c:'Gym',t:'gym',dur:'4x6',d:'Descend to squat, explode vertically. Land soft and reset. Builds vertical ground force — the force you push into the ground in the downswing that generates rotational power.'},
+  {n:'Hang Clean',c:'Gym',t:'gym',dur:'3x4',d:'Bar at hip height, explosive triple extension â hips, knees, ankles â catching in front rack. The kinetic sequence is virtually identical to the golf downswing. Builds explosive power.'},
+  {n:'Squat Jump',c:'Gym',t:'gym',dur:'4x6',d:'Descend to squat, explode vertically. Land soft and reset. Builds vertical ground force â the force you push into the ground in the downswing that generates rotational power.'},
   {n:'Broad Jump',c:'Gym',t:'gym',dur:'3x5',d:'Swing arms back, bend knees, drive feet into ground, explode horizontally. Land soft. Builds horizontal hip drive that directly translates to driving distance.'},
-  {n:'Sprinter Jumps',c:'Gym',t:'gym',dur:'3x8 each',d:'Split stance, jump vertically driving lead leg up. Switch sides. Mimics the golf kinetic sequence — exactly how power transfers from legs through hips and up through the swing.'},
+  {n:'Sprinter Jumps',c:'Gym',t:'gym',dur:'3x8 each',d:'Split stance, jump vertically driving lead leg up. Switch sides. Mimics the golf kinetic sequence â exactly how power transfers from legs through hips and up through the swing.'},
   {n:'Sled Push',c:'Gym',t:'gym',dur:'3x20m',d:'Load sled, drive with legs at low angle. Pure lower-body power with no spinal load. Very golf-safe. Builds quad and glute drive without any compression of the spine.'},
-  {n:'Medball Slams',c:'Gym',t:'gym',dur:'3x10',d:'Lift overhead, slam into ground with maximum force. Catch and repeat. Full-body power — core, lats, shoulders, glutes, quads. Builds the explosiveness that produces swing speed.'},
+  {n:'Medball Slams',c:'Gym',t:'gym',dur:'3x10',d:'Lift overhead, slam into ground with maximum force. Catch and repeat. Full-body power â core, lats, shoulders, glutes, quads. Builds the explosiveness that produces swing speed.'},
   {n:'Russian Twist',c:'Gym',t:'gym',dur:'3x15',d:'Seated, knees bent, holding dumbbell. Lean back, core braced. Twist torso left to hip, center, right. Directly trains the rotational core pattern used in every golf swing.'},
   {n:'Alternating Superman',c:'Gym',t:'gym',dur:'3x12',d:'Face down, lift one arm and opposite leg. Hold 2 seconds. Alternate. Builds lower back and glute strength for maintaining spine angle through impact.'},
   {n:'Plyo Push-Up',c:'Gym',t:'gym',dur:'3x8',d:'Push-up position. Explode up and lift hands off floor. Land flat on palms. Builds upper-body explosiveness and fast-twitch fiber activation that contributes to arm speed.'},
-  {n:'Nordic Hamstring Curl',c:'Gym',t:'gym',dur:'3x6',d:'Kneel with feet anchored. Lower body slowly to floor using hamstrings. Pull back up. Builds eccentric hamstring strength — reduces injury risk and improves hip hinge power.'},
+  {n:'Nordic Hamstring Curl',c:'Gym',t:'gym',dur:'3x6',d:'Kneel with feet anchored. Lower body slowly to floor using hamstrings. Pull back up. Builds eccentric hamstring strength â reduces injury risk and improves hip hinge power.'},
 ];
 
 function getWeekNumber(){
@@ -513,7 +573,7 @@ async function syncToSheets(data){
     setSyncStatus('ok','Synced with Google Sheets');
     return true;
   }catch(e){
-    setSyncStatus('error','Saved locally · sync failed');
+    setSyncStatus('error','Saved locally Â· sync failed');
     return false;
   }
 }
@@ -541,7 +601,7 @@ function initHeader(){
   document.getElementById('hcpin').value=hcp;
   updatePB(parseFloat(hcp));
   const day=DA[d.getDay()];
-  const msg=isGolf()&&isGym()?day+' · Golf + Gym':isGolf()?day+' · Golf practice day':isGym()?day+' · Gym day':day+' · Rest & recovery';
+  const msg=isGolf()&&isGym()?day+' Â· Golf + Gym':isGolf()?day+' Â· Golf practice day':isGym()?day+' Â· Gym day':day+' Â· Rest & recovery';
   setSyncStatus('ok',msg);
 }
 
@@ -571,7 +631,7 @@ function buildToday(){
 
   let h='';
   if(isGolf()){
-    h+=`<div class="st">Today's golf practice · Week ${getWeekNumber()}</div>`;
+    h+=`<div class="st">Today's golf practice Â· Week ${getWeekNumber()}</div>`;
     h+=`<div class="fb"><div><div class="ft">Priority: Putting & Scrambling</div><div class="fs">Rotates every week automatically</div></div><span class="bdg bw">Focus</span></div>`;
     todayDrills.forEach(x=>{
       const isPutt=PUTTING.find(p=>p.n===x.n);
@@ -579,8 +639,8 @@ function buildToday(){
     });
   }
   if(isGym()){
-    if(isGolf())h+=`<div class="div" style="margin:11px -13px;"></div><div class="st" style="margin-top:11px;">Today's gym · ${gym.name}</div>`;
-    else h+=`<div class="st">Today's gym · ${gym.name}</div>`;
+    if(isGolf())h+=`<div class="div" style="margin:11px -13px;"></div><div class="st" style="margin-top:11px;">Today's gym Â· ${gym.name}</div>`;
+    else h+=`<div class="st">Today's gym Â· ${gym.name}</div>`;
     h+=`<div style="font-size:11px;color:var(--tu);margin-bottom:9px;">${gym.note}</div>`;
     gym.exercises.forEach(x=>{
       h+=`<div class="gc"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div class="gn">${x.n}</div><span class="gmtag">${x.p}</span></div><div class="gm2">${x.m}</div><div style="font-size:11px;color:var(--g);margin-top:3px;">${x.golf}</div></div>`;
@@ -588,7 +648,7 @@ function buildToday(){
   }
   if(!isGolf()&&!isGym()){
     h+=`<div class="st">Rest & recovery</div>`;
-    h+=`<div class="df"><div class="dft">Active recovery day</div><div class="dfc">Rest protocol</div><div class="dfd">Light walking, hip mobility, foam rolling. Review your logged sessions and plan your next practice. Good day for mental game work — visualize your pre-shot routine: assess shot elements, choose a club, visualize ball flight, see your landing spot, focused practice swing, walk in clear-headed and react to the target.</div></div>`;
+    h+=`<div class="df"><div class="dft">Active recovery day</div><div class="dfc">Rest protocol</div><div class="dfd">Light walking, hip mobility, foam rolling. Review your logged sessions and plan your next practice. Good day for mental game work â visualize your pre-shot routine: assess shot elements, choose a club, visualize ball flight, see your landing spot, focused practice swing, walk in clear-headed and react to the target.</div></div>`;
   }
   document.getElementById('tcont').innerHTML=h;
 }
@@ -627,7 +687,7 @@ function buildWeek(){
 
 function buildDrills(f){
   const list=f==='all'?ALL_DRILLS:ALL_DRILLS.filter(x=>x.t===f);
-  document.getElementById('dlist').innerHTML=list.map(x=>`<div class="df"><div class="dft">${x.n}</div><div class="dfc">${x.c} · ${x.dur}</div><div class="dfd">${x.d}</div></div>`).join('')||`<div style="color:var(--tu);font-size:12px;text-align:center;padding:16px;">No drills found</div>`;
+  document.getElementById('dlist').innerHTML=list.map(x=>`<div class="df"><div class="dft">${x.n}</div><div class="dfc">${x.c} Â· ${x.dur}</div><div class="dfd">${x.d}</div></div>`).join('')||`<div style="color:var(--tu);font-size:12px;text-align:center;padding:16px;">No drills found</div>`;
 }
 
 function filt(f,btn){
@@ -676,7 +736,7 @@ async function savelog(){
     localStorage.setItem('cgc_logs',JSON.stringify(updated));
     showToast('Saved & synced to Google Sheets!','ok');
   }else{
-    showToast('Saved locally — will sync when online','err');
+    showToast('Saved locally â will sync when online','err');
   }
   btn.textContent='Save + sync to Google Sheets';
   buildLogHist();
@@ -686,7 +746,7 @@ function buildLogHist(){
   const logs=JSON.parse(localStorage.getItem('cgc_logs')||'[]');
   const el=document.getElementById('lhist');
   if(!logs.length){el.innerHTML='<div style="font-size:12px;color:var(--tu);text-align:center;padding:14px;">No sessions logged yet</div>';return;}
-  el.innerHTML=logs.slice().reverse().slice(0,10).map(l=>`<div class="lhi"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;"><div class="lht">${l.dr||l.t||'Session'}</div><span class="lhs ${l.synced?'lhs-ok':'lhs-pending'}">${l.synced?'Synced':'Local'}</span></div><div class="lhm">${l.dt}${l.sc?' · Score: '+l.sc:''}${l.pt?' · Putts: '+l.pt:''}</div>${l.nt?`<div class="lhn">${l.nt}</div>`:''}</div>`).join('');
+  el.innerHTML=logs.slice().reverse().slice(0,10).map(l=>`<div class="lhi"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;"><div class="lht">${l.dr||l.t||'Session'}</div><span class="lhs ${l.synced?'lhs-ok':'lhs-pending'}">${l.synced?'Synced':'Local'}</span></div><div class="lhm">${l.dt}${l.sc?' Â· Score: '+l.sc:''}${l.pt?' Â· Putts: '+l.pt:''}</div>${l.nt?`<div class="lhn">${l.nt}</div>`:''}</div>`).join('');
 }
 
 function showToast(msg,type){
