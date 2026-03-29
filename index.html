@@ -10,7 +10,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
 :root{--g:#1D4A2F;--gm:#2D6B45;--gl:#7BBF96;--gp:#D4E8DA;--ow:#F5F0E8;--od:#EDE8DC;--ob:#C8C0B0;--td:#1D2E1F;--tm:#4A5C4D;--tu:#7A7060;}
-html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
+html,body{background:var(--ow);margin:0;padding:0;width:100%;min-height:100vh;}
 .app{background:var(--ow);width:100%;min-height:100vh;display:flex;flex-direction:column;}
 .hdr{background:var(--g);padding:max(env(safe-area-inset-top),18px) 18px 13px;}
 .hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
@@ -55,6 +55,7 @@ html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
 .bdg{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:600;}
 .bw{background:#791F1F;color:#FCEBEB;}
 .bg{background:var(--gp);color:#27500A;}
+.wk-badge{background:rgba(255,255,255,0.15);color:#C8E8D0;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;}
 .dc2{background:var(--od);border-radius:0 8px 8px 0;padding:11px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;border:0.5px solid var(--ob);border-left:3px solid var(--g);}
 .dc2n{font-size:13px;font-weight:600;color:var(--td);}
 .dc2m{font-size:11px;color:var(--tu);margin-top:2px;}
@@ -106,11 +107,14 @@ html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
 .sbt{font-size:12px;color:#27500A;font-weight:600;}
 .sbs{font-size:11px;color:#3B6D11;margin-top:1px;}
 .pull-btn{background:var(--g);color:var(--ow);border:none;border-radius:7px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;}
+.week-info{background:var(--od);border-radius:8px;padding:10px 13px;margin-bottom:11px;border:0.5px solid var(--ob);display:flex;justify-content:space-between;align-items:center;}
+.week-info-txt{font-size:12px;color:var(--tm);font-weight:500;}
+.week-info-num{font-size:20px;font-weight:700;color:var(--g);}
+.week-info-sub{font-size:10px;color:var(--tu);}
 </style>
 </head>
 <body>
 <div class="app">
-
 <div class="hdr">
   <div class="hdr-top">
     <div><div class="greeting" id="greet">Good morning, Cole</div><div class="dateline" id="dline">Loading...</div></div>
@@ -122,7 +126,6 @@ html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
   </div>
   <div class="wbar"><div class="sdot" id="sdot"></div><div class="wbar-txt" id="wtxt">Loading...</div></div>
 </div>
-
 <div class="tabs">
   <div class="tab on" onclick="go('today',this)">Today</div>
   <div class="tab" onclick="go('week',this)">Week</div>
@@ -130,7 +133,6 @@ html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
   <div class="tab" onclick="go('drills',this)">Drills</div>
   <div class="tab" onclick="go('log',this)">Log</div>
 </div>
-
 <div class="body">
 
 <div id="p-today" class="pg on">
@@ -153,8 +155,11 @@ html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
     <div class="st">This week's schedule</div>
     <div id="wplan"></div>
     <div class="div" style="margin:13px -13px;"></div>
-    <div class="st" style="margin-top:13px;">Weekly drill rotation</div>
+    <div class="st" style="margin-top:13px;">This week's drills</div>
     <div id="wdrills"></div>
+    <div class="div" style="margin:13px -13px;"></div>
+    <div class="st" style="margin-top:13px;">This week's gym program</div>
+    <div id="wgym"></div>
   </div>
 </div>
 
@@ -202,7 +207,7 @@ html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
 
 <div id="p-drills" class="pg">
   <div class="sec">
-    <div class="frow" id="frow">
+    <div class="frow">
       <div class="fb2 on" onclick="filt('all',this)">All</div>
       <div class="fb2" onclick="filt('putting',this)">Putting</div>
       <div class="fb2" onclick="filt('chipping',this)">Chipping</div>
@@ -216,7 +221,7 @@ html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
 <div id="p-log" class="pg">
   <div class="sec">
     <div class="sync-banner">
-      <div><div class="sbt">Google Sheets sync active</div><div class="sbs">Sessions save to your sheet automatically</div></div>
+      <div><div class="sbt">Google Sheets sync active</div><div class="sbs">Sessions save automatically</div></div>
       <button class="pull-btn" onclick="pullSheets()">Pull data</button>
     </div>
     <div class="st">Log a session</div>
@@ -240,7 +245,6 @@ html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
 </div>
 
 </div>
-
 <div class="bnav">
   <div class="bi" onclick="go('today',null)"><div class="bd on" id="bn-today"></div><div class="bl on" id="bnl-today">Today</div></div>
   <div class="bi" onclick="go('week',null)"><div class="bd" id="bn-week"></div><div class="bl" id="bnl-week">Week</div></div>
@@ -248,27 +252,109 @@ html,body{background:var(--ow);min-height:100vh;margin:0;padding:0;}
   <div class="bi" onclick="go('drills',null)"><div class="bd" id="bn-drills"></div><div class="bl" id="bnl-drills">Drills</div></div>
   <div class="bi" onclick="go('log',null)"><div class="bd" id="bn-log"></div><div class="bl" id="bnl-log">Log</div></div>
 </div>
-
 </div>
 <script>
 const SHEET='https://script.google.com/macros/s/AKfycbwWiZblV_wKDN0TyC61b-IloYkGyDfkUq6cliyGMWi6m_lOXcDS2fsTla5KuIGwD-ngwQ/exec';
 const DA=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const GD=[2,4,6],GY=[1,3,5];
-const DRILLS=[
-  {n:'Clock Drill',c:'Putting',t:'putting',dur:'30 min',d:'Set up 3 circles at 3ft, 5ft, and 7ft with 4 balls each. Make all 4 in a row per circle before moving on. Restart on any miss. Track total putts to complete all three circles. Great for pressure putting.'},
+
+// All putting drills - rotated weekly, always weighted heaviest (your #1 weakness)
+const PUTTING=[
+  {n:'Clock Drill',dur:'30 min',d:'3 circles at 3ft/5ft/7ft with 4 balls each. Make all 4 in a row per circle. Restart on any miss. Track total putts to complete. Great for pressure putting.'},
+  {n:'Stick Stop Drill',dur:'20 min',d:'Stick 2ft past hole. Putt from 15-20ft. Hole=5pts, between stick and hole=3pts, past stick=1pt, short=-2pts. Race to 21. Never leave a putt short.'},
+  {n:'Ruler Drill',dur:'15 min',d:'Find a straight 5ft putt. Position ruler toward hole. Roll ball along full ruler into hole. Make 5 in a row. Trains clubface angle — controls 87% of direction.'},
+  {n:'10-Ball Drill',dur:'25 min',d:'Tees at 10/20/30ft, 3 balls each plus Moneyball at 20ft. Two-putt all or restart. Moneyball must finish inside 3ft then hole out. Beat your restart score daily.'},
+  {n:'Jordan Spieth Drill',dur:'20 min',d:'Balls 20ft from green edge. Stop first ball near edge without touching fringe. Each next ball must finish shorter. Count consecutive successes and beat your record.'},
+  {n:'9-Hole Pullback Drill',dur:'25 min',d:'Start 10ft. Miss = pull one putter length further. Play from 10/20/30ft three times like a 9-hole round. 1 putt=birdie, 2=par, 3=bogey. Improve week to week.'},
+  {n:'Mushroom Drill',dur:'20 min',d:'4-footers. 3 balls straight uphill, 1 around hole. Make 3 uphill then right, back to 3 uphill then left — alternating until done. Builds confidence on breaking putts.'},
+  {n:'17 Drill',dur:'20 min',d:'3 holes 20ft apart. 3 balls at 5/10/15ft from separate holes. Putt each toward a different hole. 9 total putts. Tour average is 17 — beat it consistently.'},
+  {n:'Towel Tuck Drill',dur:'15 min',d:'Towel around your back held by both armpits. Make putts keeping towel in. If it falls your stroke disconnected. Builds arm-body connection for a consistent pendulum.'},
+  {n:'Spiral Drill',dur:'15 min',d:'12 balls in a spiral from 4ft to 15ft in 1ft increments. 1 point per make, lose 2 for a 3-putt. Finish with positive points. Assesses your full midrange putting range.'},
+];
+
+// All chipping drills - rotated weekly (#2 weakness)
+const CHIPPING=[
+  {n:'21 Up/Down Drill',dur:'25 min',d:'Drop ball randomly within 30 yards. Any club. Get up-and-down. 9 holes. Score 21+ to beat tour scrambling average. Your scrambling is 20% — top priority.'},
+  {n:'Flamingo Drill',dur:'15 min',d:'Drop trail foot back so all weight loads on lead foot. Hit chips maintaining forward pressure. If you shift backward you fall — trail foot is not there to catch you.'},
+  {n:'Game On',dur:'25 min',d:'40 random chip shots to different holes, distances, slopes, lies. Within 6ft = win. Track wins/losses like a season record. Forces you to handle every situation.'},
+  {n:'Chip-a-Coin Drill',dur:'15 min',d:'Coin 1-2 inches in front of ball. Practice chips moving the coin after ball contact. Ensures you hit down and through for proper backspin and trajectory.'},
+  {n:'3/1 Hole',dur:'20 min',d:'9 spots around green. Hit low-loft (8i/7i), mid-loft (PW), and high-loft (LW/SW) from each. Closest club wins the hole. Master multiple shot types.'},
+  {n:'Lead Hip Stick Drill',dur:'15 min',d:'Alignment rod attached to wedge extending 2-3ft past grip against lead hip. Flip wrists and rod hits your side. Forces proper body rotation through impact.'},
+  {n:'Open Trail Hand Drill',dur:'15 min',d:'Remove trail hand from grip, rest palm on shaft. Feel constant palm-to-shaft pressure. If you flip, connection breaks. Hit 20 chips this way — eliminates the flip.'},
+];
+
+// All full swing drills - rotated weekly
+const SWING=[
+  {n:'9-Shot Tic Tac Toe',dur:'30 min',d:'Hit all 9 ball flights: Low/Mid/High Draw, Straight, and Fade. Calibrates face-to-path, swing path, and low-point control. Used by Tiger Woods with his father.'},
+  {n:'Tempo Swings',dur:'20 min',d:'Metronome app at 64bpm. Club crosses impact zone on each beep. Start small, build to 3/4 speed. Hit shots imitating that tempo. The most repeatable swing rhythm drill.'},
+  {n:'Startline Gate',dur:'20 min',d:'Two rods 1ft apart as a gate 6ft in front of ball. 30 balls alternating left/right/center start lines — cannot repeat same choice twice. Score out of 30.'},
+  {n:'Under Bridge Over Tree',dur:'20 min',d:'Alternate 3/4 swing low shots and high shots through your bag. Low: ball back, drive down, low finish. High: ball forward, sweepy, high finish. Builds trajectory control.'},
+  {n:'Lowpoint Towel Drill',dur:'20 min',d:'Flat towel 2 inches behind ball. 7 iron. Goal: ball-first contact, ground contact in front of ball — not towel. 20 shots, track successes.'},
+];
+
+// All gym programs — 12 weeks of rotating programs
+const GYM_PROGRAMS=[
+  {name:'Power Foundation',exercises:[
+    {n:'Back Squat — 4x5',m:'Lower body power · ground force production'},
+    {n:'Romanian Deadlift — 3x8',m:'Hip hinge · posterior chain · swing stability'},
+    {n:'Medball Rotational Slam — 3x10',m:'Rotational power · swing speed'},
+    {n:'Russian Twist — 3x15',m:'Core rotation · obliques'},
+    {n:'Plyo Push-Up — 3x8',m:'Upper body explosiveness'},
+  ]},
+  {name:'Explosive Strength',exercises:[
+    {n:'Trap Bar Deadlift — 4x5',m:'Full body power · kinetic chain'},
+    {n:'Split Squat — 3x8 each',m:'Hip mobility · single-leg stability'},
+    {n:'Squat Jump — 4x6',m:'Vertical force · explosive hip drive'},
+    {n:'Alternating Superman — 3x12',m:'Lower back · glute activation'},
+    {n:'Broad Jump — 3x5',m:'Horizontal power · hip drive'},
+  ]},
+  {name:'Athletic Power',exercises:[
+    {n:'Hex Bar Deadlift — 4x4',m:'Max strength · ground force'},
+    {n:'Bulgarian Split Squat — 3x8',m:'Hip mobility · balance'},
+    {n:'Sprinter Jumps — 3x8 each',m:'Power sequence · golf kinetics'},
+    {n:'Medball Slam — 3x10',m:'Full body power · core'},
+    {n:'Heavy Rope Snake — 3x20s',m:'Shoulder stability · rotational endurance'},
+  ]},
+  {name:'Rotational Power',exercises:[
+    {n:'Deadlift — 4x5',m:'Full posterior chain · ground force'},
+    {n:'Goblet Squat — 3x10',m:'Hip mobility · core stability'},
+    {n:'Pallof Press — 3x12 each',m:'Anti-rotation core · swing stability'},
+    {n:'Medball Side Throw — 3x8 each',m:'Rotational explosiveness · hip speed'},
+    {n:'Single-Leg RDL — 3x8 each',m:'Balance · posterior chain · hip stability'},
+  ]},
+  {name:'Speed & Stability',exercises:[
+    {n:'Box Squat — 4x5',m:'Explosive hip drive · power development'},
+    {n:'Hip Thrust — 3x10',m:'Glute activation · hip extension power'},
+    {n:'Cable Rotation — 3x12 each',m:'Rotational strength · core power'},
+    {n:'Squat Jump — 4x6',m:'Vertical force · fast-twitch activation'},
+    {n:'Band Pull-Apart — 3x15',m:'Shoulder stability · posture'},
+  ]},
+  {name:'Strength Endurance',exercises:[
+    {n:'Front Squat — 4x6',m:'Quad strength · upright posture'},
+    {n:'Stiff-Leg Deadlift — 3x8',m:'Hamstring flexibility · posterior chain'},
+    {n:'Landmine Rotation — 3x10 each',m:'Rotational power · core strength'},
+    {n:'Lateral Lunge — 3x8 each',m:'Hip adductor · lateral stability'},
+    {n:'Plyo Push-Up — 3x8',m:'Upper body explosiveness · arm speed'},
+  ]},
+];
+
+// All drills library for Drills tab
+const ALL_DRILLS=[
+  {n:'Clock Drill',c:'Putting',t:'putting',dur:'30 min',d:'Set up 3 circles at 3ft, 5ft, and 7ft with 4 balls each. Make all 4 in a row per circle. Restart on any miss. Track total putts to complete all three circles. Great for pressure putting.'},
   {n:'Ruler Drill',c:'Putting',t:'putting',dur:'15 min',d:'Find a straight 5ft putt. Position ruler toward hole. Roll ball along full ruler into hole. Make 5 in a row. Trains clubface angle at impact — controls up to 87% of ball direction.'},
-  {n:'Towel Tuck Drill',c:'Putting',t:'putting',dur:'15 min',d:'Place towel around your back held with both armpits. Make putts keeping the towel held. If it falls, your stroke disconnected. Builds arm-body connection for a consistent pendulum stroke.'},
+  {n:'Towel Tuck Drill',c:'Putting',t:'putting',dur:'15 min',d:'Place towel around your back held with both armpits. Make putts keeping towel held. If it falls your stroke disconnected. Builds arm-body connection for a consistent pendulum stroke.'},
   {n:'Jordan Spieth Drill',c:'Putting',t:'putting',dur:'20 min',d:'Set balls 20ft from green edge. Stop first ball near edge without touching fringe. Each next ball must finish shorter than last. Count consecutive successes and beat your record daily.'},
   {n:'10-Ball Drill',c:'Putting',t:'putting',dur:'25 min',d:'Tees at 10, 20, 30ft with 3 balls each plus 1 Moneyball at 20ft. Two-putt all or restart. Moneyball must finish inside 3ft then hole out. Track restarts and beat your score daily.'},
   {n:'Stick Stop Drill',c:'Putting',t:'putting',dur:'20 min',d:'Stick 2ft past hole. Putt from 15-20ft. Hole=5pts, between stick and hole=3pts, past stick=1pt, short=-2pts. Race to 21. Trains you to never leave a putt short.'},
   {n:'Mushroom Drill',c:'Putting',t:'putting',dur:'20 min',d:'4-footers. 3 balls straight uphill, 1 ball each around hole. Make 3 uphill, then right, back to 3 uphill, then left — alternating until complete. Builds confidence on breaking putts.'},
   {n:'9-Hole Pullback Drill',c:'Putting',t:'putting',dur:'25 min',d:'Start 10ft. Miss = pull one putter length further. Play from 10, 20, 30ft three times like a 9-hole round. 1 putt=birdie, 2=par, 3=bogey. Track and improve week to week.'},
   {n:'17 Drill',c:'Putting',t:'putting',dur:'20 min',d:'3 holes 20ft apart. 3 balls at 5ft, 10ft, 15ft from separate holes. Putt each toward a different hole. 9 total putts. Tour average is 17 — beat it consistently.'},
+  {n:'Spiral Drill',c:'Putting',t:'putting',dur:'15 min',d:'12 balls in a spiral from 4ft to 15ft in 1ft increments. 1 point per make, lose 2 for a 3-putt. Finish with positive points. Great for assessing midrange putting.'},
   {n:'Game On',c:'Chipping',t:'chipping',dur:'25 min',d:'40 random chip shots to different holes, distances, slopes, lies. Within 6ft = win. Track wins/losses like a season. Forces you to handle every situation.'},
-  {n:'Open Trail Hand Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Remove trail hand from grip, rest palm on shaft. Feel constant palm-to-shaft pressure through swing. If you flip, connection breaks. Hit 20 chips this way.'},
-  {n:'Chip-a-Coin Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Coin 1-2 inches in front of ball. Practice chips moving the coin after ball contact. Ensures you hit down and through for proper backspin and trajectory.'},
-  {n:'21 Up/Down Drill',c:'Chipping',t:'chipping',dur:'25 min',d:'Drop ball randomly within 30 yards. Any club. Get up-and-down. 9 holes. Score 21+ to beat tour scrambling average. Your scrambling is 20% — highest priority chipping drill.'},
+  {n:'Open Trail Hand Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Remove trail hand from grip, rest palm on shaft. Feel constant palm-to-shaft pressure. If you flip connection breaks. Hit 20 chips this way.'},
+  {n:'Chip-a-Coin Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Coin 1-2 inches in front of ball. Practice chips moving coin after ball contact. Ensures you hit down and through for proper backspin and trajectory.'},
+  {n:'21 Up/Down Drill',c:'Chipping',t:'chipping',dur:'25 min',d:'Drop ball randomly within 30 yards. Any club. Get up-and-down. 9 holes. Score 21+ to beat tour scrambling average. Your #1 priority chipping drill.'},
   {n:'3/1 Hole',c:'Chipping',t:'chipping',dur:'20 min',d:'9 spots around green. Hit low-loft (8i/7i), mid-loft (PW), and high-loft (LW/SW) from each. Closest club wins the hole. Master multiple shot types.'},
   {n:'Flamingo Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Drop trail foot back so weight loads on lead foot. Hit chips maintaining forward pressure. If you shift backward you fall — trail foot is not there to catch you.'},
   {n:'Lead Hip Stick Drill',c:'Chipping',t:'chipping',dur:'15 min',d:'Alignment rod attached to wedge extending 2-3ft past grip against lead hip. Flip wrists and rod hits your side. Forces proper body rotation through impact.'},
@@ -280,21 +366,45 @@ const DRILLS=[
   {n:'Back Squat',c:'Gym',t:'gym',dur:'4x5 reps',d:'Barbell on upper traps. Brace core, push knees out, descend to parallel. Drive through heels. Trains the exact ground force pattern used in the golf downswing.'},
   {n:'Romanian Deadlift',c:'Gym',t:'gym',dur:'3x8 reps',d:'Barbell at hips, soft knees. Hinge at hips pushing them back. Feel hamstring stretch, drive hips forward. Builds hip hinge and posterior chain strength essential for swing stability.'},
   {n:'Russian Twist',c:'Gym',t:'gym',dur:'3x15 reps',d:'Seated, knees bent, holding dumbbell. Lean back, core braced. Twist torso left to hip, center, right. Directly trains the rotational core pattern used in every golf swing.'},
-  {n:'Medball Slams',c:'Gym',t:'gym',dur:'3x10 reps',d:'Golf posture, ball between feet. Squat, pick up, lift overhead, throw down with maximum force. Catch on bounce. Builds total-body explosive power — triceps, abs, shoulders, glutes, quads.'},
-  {n:'Squat Jumps',c:'Gym',t:'gym',dur:'4x6 reps',d:'Shoulder-width. Descend to full squat. Explode up off ground, legs fully extended. Land toe-to-heel and descend immediately. Builds vertical ground force production central to swing power.'},
+  {n:'Medball Slams',c:'Gym',t:'gym',dur:'3x10 reps',d:'Golf posture, ball between feet. Squat, pick up, lift overhead, throw down with maximum force. Catch on bounce. Builds total-body explosive power.'},
+  {n:'Squat Jumps',c:'Gym',t:'gym',dur:'4x6 reps',d:'Shoulder-width. Descend to full squat. Explode up off ground, legs fully extended. Land toe-to-heel and descend immediately. Builds vertical ground force production.'},
   {n:'Sprinter Jumps',c:'Gym',t:'gym',dur:'3x8 each',d:'Split stance, arms aligned with opposite feet. Jump vertically on lead leg using arm drive. Switch sides. Directly mimics the kinetic power sequence of the golf downswing.'},
-  {n:'Alternating Superman',c:'Gym',t:'gym',dur:'3x12 reps',d:'Face down, arms and legs extended. Lift one arm and opposite leg arching back. Hold 2 seconds. Alternate. Builds lower back and glute strength for maintaining spine angle through impact.'},
+  {n:'Alternating Superman',c:'Gym',t:'gym',dur:'3x12 reps',d:'Face down, arms and legs extended. Lift one arm and opposite leg arching back. Hold 2 seconds. Alternate. Builds lower back and glute strength for maintaining spine angle.'},
   {n:'Plyo Push-Ups',c:'Gym',t:'gym',dur:'3x8 reps',d:'Push-up position. Lower to just above ground. Explode up and lift hands off floor. Land flat on palms. Builds upper-body explosiveness and fast-twitch muscle for clubhead speed.'},
-  {n:'Broad Jump',c:'Gym',t:'gym',dur:'3x5 reps',d:'Shoulder-width, arms up. Swing arms back, bend knees, drive feet into ground, explode horizontally. Land soft and reset. Builds hip drive and horizontal power that translates to swing speed.'},
+  {n:'Broad Jump',c:'Gym',t:'gym',dur:'3x5 reps',d:'Shoulder-width, arms up. Swing arms back, bend knees, drive feet into ground, explode horizontally. Land soft and reset. Builds hip drive and horizontal power for swing speed.'},
 ];
-const GA=[{n:'Back Squat — 4x5',m:'Lower body power · ground force'},{n:'Romanian Deadlift — 3x8',m:'Hip hinge · posterior chain'},{n:'Medball Rotational Slam — 3x10',m:'Rotational power · swing speed'},{n:'Russian Twist — 3x15',m:'Core rotation · obliques'},{n:'Plyo Push-Up — 3x8',m:'Upper body explosiveness'}];
-const GB=[{n:'Trap Bar Deadlift — 4x5',m:'Full body power · kinetic chain'},{n:'Split Squat — 3x8 each',m:'Hip mobility · single-leg stability'},{n:'Squat Jump — 4x6',m:'Vertical force · explosive hip drive'},{n:'Alternating Superman — 3x12',m:'Lower back · glute activation'},{n:'Broad Jump — 3x5',m:'Horizontal power · hip drive'}];
-const GC=[{n:'Hex Bar Deadlift — 4x4',m:'Max strength · ground force'},{n:'Bulgarian Split Squat — 3x8',m:'Hip mobility · balance'},{n:'Sprinter Jumps — 3x8 each',m:'Power sequence · golf kinetics'},{n:'Medball Slam — 3x10',m:'Full body power · core'},{n:'Heavy Rope Snake — 3x20s',m:'Shoulder stability · endurance'}];
-const GW=[GA,GB,GC];
+
+function getWeekNumber(){
+  const d=new Date();
+  const start=new Date(d.getFullYear(),0,1);
+  return Math.ceil(((d-start)/86400000+start.getDay()+1)/7);
+}
+
+function getWeeklyDrills(){
+  const wk=getWeekNumber();
+  // Always 2 putting drills (biggest weakness), 1 chipping, 1 swing per session
+  // Rotate which specific drills appear each week
+  const pi=wk%PUTTING.length;
+  const pi2=(wk+1)%PUTTING.length;
+  const ci=wk%CHIPPING.length;
+  const si=wk%SWING.length;
+  return{
+    tue:[PUTTING[pi],PUTTING[pi2],CHIPPING[ci]],
+    thu:[PUTTING[(pi+2)%PUTTING.length],CHIPPING[(ci+1)%CHIPPING.length],SWING[si]],
+    sat:[PUTTING[(pi+3)%PUTTING.length],PUTTING[(pi+4)%PUTTING.length],SWING[(si+1)%SWING.length]],
+  };
+}
+
+function getGymProgram(){
+  const wk=getWeekNumber();
+  return GYM_PROGRAMS[wk%GYM_PROGRAMS.length];
+}
+
 function nd(){return new Date();}
 function dw(){return nd().getDay();}
 function isGolf(){return GD.includes(dw());}
 function isGym(){return GY.includes(dw());}
+
 function setSyncStatus(s,msg){
   const dot=document.getElementById('sdot');
   const txt=document.getElementById('wtxt');
@@ -303,6 +413,7 @@ function setSyncStatus(s,msg){
   else if(s==='error')dot.classList.add('error');
   txt.textContent=msg||'';
 }
+
 async function syncToSheets(data){
   setSyncStatus('syncing','Syncing to Google Sheets...');
   try{
@@ -314,6 +425,7 @@ async function syncToSheets(data){
     return false;
   }
 }
+
 async function pullSheets(){
   setSyncStatus('syncing','Pulling from Google Sheets...');
   showToast('Pulling from Google Sheets...','ok');
@@ -326,6 +438,7 @@ async function pullSheets(){
     showToast('Could not reach Google Sheets','err');
   }
 }
+
 function initHeader(){
   const d=nd(),h=d.getHours();
   const gr=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
@@ -339,6 +452,7 @@ function initHeader(){
   const msg=isGolf()&&isGym()?day+' · Golf + Gym':isGolf()?day+' · Golf practice day':isGym()?day+' · Gym day':day+' · Rest & recovery';
   setSyncStatus('ok',msg);
 }
+
 function buildStrip(){
   const d=nd(),dow2=d.getDay();
   const ws=new Date(d);ws.setDate(d.getDate()-dow2);
@@ -352,20 +466,29 @@ function buildStrip(){
   }
   document.getElementById('wstrip').innerHTML=h;
 }
+
 function buildToday(){
-  const wn=Math.floor(nd().getDate()/7)%3;
+  const drills=getWeeklyDrills();
+  const gym=getGymProgram();
+  const dow2=dw();
+  let todayDrills=[];
+  if(dow2===2)todayDrills=drills.tue;
+  else if(dow2===4)todayDrills=drills.thu;
+  else if(dow2===6)todayDrills=drills.sat;
+  else todayDrills=drills.tue;
+
   let h='';
   if(isGolf()){
-    h+=`<div class="st">Today's golf practice</div>`;
-    h+=`<div class="fb"><div><div class="ft">Priority: Putting & Scrambling</div><div class="fs">Your two biggest weaknesses</div></div><span class="bdg bw">Focus</span></div>`;
-    const pd=DRILLS.filter(x=>x.t==='putting').slice(0,2);
-    const cd=DRILLS.filter(x=>x.t==='chipping').slice(0,1);
-    [...pd,...cd].forEach(x=>{h+=`<div class="dc2"><div><div class="dc2n">${x.n}</div><div class="dc2m">${x.c} · ${x.dur}</div></div><span class="bdg bg">${x.c}</span></div>`;});
+    h+=`<div class="st">Today's golf practice · Week ${getWeekNumber()}</div>`;
+    h+=`<div class="fb"><div><div class="ft">Priority: Putting & Scrambling</div><div class="fs">Automatically updated weekly</div></div><span class="bdg bw">Focus</span></div>`;
+    todayDrills.forEach(x=>{
+      h+=`<div class="dc2"><div><div class="dc2n">${x.n}</div><div class="dc2m">${x.dur}</div></div><span class="bdg bg">${x.dur.includes('put')||PUTTING.find(p=>p.n===x.n)?'Putting':'Chipping'}</span></div>`;
+    });
   }
   if(isGym()){
-    if(isGolf())h+=`<div class="div" style="margin:11px -13px;"></div><div class="st" style="margin-top:11px;">Today's gym session</div>`;
-    else h+=`<div class="st">Today's gym session</div>`;
-    GW[wn].forEach(x=>{h+=`<div class="gc"><div class="gn">${x.n}</div><div class="gm2">${x.m}</div></div>`;});
+    if(isGolf())h+=`<div class="div" style="margin:11px -13px;"></div><div class="st" style="margin-top:11px;">Today's gym · ${gym.name}</div>`;
+    else h+=`<div class="st">Today's gym · ${gym.name}</div>`;
+    gym.exercises.forEach(x=>{h+=`<div class="gc"><div class="gn">${x.n}</div><div class="gm2">${x.m}</div></div>`;});
   }
   if(!isGolf()&&!isGym()){
     h+=`<div class="st">Rest & recovery</div>`;
@@ -373,7 +496,11 @@ function buildToday(){
   }
   document.getElementById('tcont').innerHTML=h;
 }
+
 function buildWeek(){
+  const wk=getWeekNumber();
+  const gym=getGymProgram();
+  const drills=getWeeklyDrills();
   let h='';
   for(let i=0;i<7;i++){
     const isG=GD.includes(i),isY=GY.includes(i);
@@ -385,24 +512,32 @@ function buildWeek(){
     h+=`<div class="wr"><div class="wdl" style="${bold}">${DA[i]}</div><div>${p}</div></div>`;
   }
   document.getElementById('wplan').innerHTML=h;
-  const rot=[{d:'Tue',dr:['Clock Drill','21 Up/Down Drill','Tempo Swings']},{d:'Thu',dr:['Stick Stop Drill','Flamingo Drill','9-Shot Tic Tac Toe']},{d:'Sat',dr:['9-Hole Pullback Drill','Open Trail Hand Drill','Startline Gate']}];
-  let dh='';
-  rot.forEach(r=>{
+
+  const dayDrills=[{d:'Tue',dr:drills.tue},{d:'Thu',dr:drills.thu},{d:'Sat',dr:drills.sat}];
+  let dh=`<div class="week-info"><div><div class="week-info-txt">Current training week</div><div class="week-info-sub">Drills rotate every Monday</div></div><div style="text-align:right;"><div class="week-info-num">Wk ${wk}</div><div class="week-info-sub">of 52</div></div></div>`;
+  dayDrills.forEach(r=>{
     dh+=`<div style="margin-bottom:11px;"><div class="st" style="margin-bottom:7px;">${r.d}</div>`;
-    r.dr.forEach(x=>{dh+=`<div class="dc2" style="margin-bottom:6px;"><div class="dc2n">${x}</div></div>`;});
+    r.dr.forEach(x=>{dh+=`<div class="dc2" style="margin-bottom:6px;"><div><div class="dc2n">${x.n}</div><div class="dc2m">${x.dur}</div></div></div>`;});
     dh+=`</div>`;
   });
   document.getElementById('wdrills').innerHTML=dh;
+
+  let gh=`<div class="week-info"><div><div class="week-info-txt">This week's gym program</div><div class="week-info-sub">Rotates every week automatically</div></div><div style="text-align:right;"><div class="week-info-num" style="font-size:13px;font-weight:600;">${gym.name}</div></div></div>`;
+  gym.exercises.forEach(x=>{gh+=`<div class="gc">${x.n}<div class="gm2">${x.m}</div></div>`;});
+  document.getElementById('wgym').innerHTML=gh;
 }
+
 function buildDrills(f){
-  const list=f==='all'?DRILLS:DRILLS.filter(x=>x.t===f);
+  const list=f==='all'?ALL_DRILLS:ALL_DRILLS.filter(x=>x.t===f);
   document.getElementById('dlist').innerHTML=list.map(x=>`<div class="df"><div class="dft">${x.n}</div><div class="dfc">${x.c} · ${x.dur}</div><div class="dfd">${x.d}</div></div>`).join('')||`<div style="color:var(--tu);font-size:12px;text-align:center;padding:16px;">No drills found</div>`;
 }
+
 function filt(f,btn){
   document.querySelectorAll('.fb2').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   buildDrills(f);
 }
+
 function saveHcp(){
   const v=document.getElementById('hcpin').value;
   if(!v)return;
@@ -412,6 +547,7 @@ function saveHcp(){
   updatePB(parseFloat(hcp));
   showToast('Handicap updated to '+hcp,'ok');
 }
+
 function updatePB(hcp){
   const pct=Math.max(0,Math.min(100,((5.8-hcp)/5.8)*100));
   const bar=document.getElementById('hpb');
@@ -419,6 +555,7 @@ function updatePB(hcp){
   if(bar)bar.style.width=pct.toFixed(1)+'%';
   if(val)val.textContent=hcp.toFixed(1);
 }
+
 async function savelog(){
   const t=document.getElementById('ltype').value;
   const dr=document.getElementById('ldrill').value;
@@ -446,17 +583,20 @@ async function savelog(){
   btn.textContent='Save + sync to Google Sheets';
   buildLogHist();
 }
+
 function buildLogHist(){
   const logs=JSON.parse(localStorage.getItem('cgc_logs')||'[]');
   const el=document.getElementById('lhist');
   if(!logs.length){el.innerHTML='<div style="font-size:12px;color:var(--tu);text-align:center;padding:14px;">No sessions logged yet</div>';return;}
   el.innerHTML=logs.slice().reverse().slice(0,10).map(l=>`<div class="lhi"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;"><div class="lht">${l.dr||l.t||'Session'}</div><span class="lhs ${l.synced?'lhs-ok':'lhs-pending'}">${l.synced?'Synced':'Local'}</span></div><div class="lhm">${l.dt}${l.sc?' · Score: '+l.sc:''}${l.pt?' · Putts: '+l.pt:''}</div>${l.nt?`<div class="lhn">${l.nt}</div>`:''}</div>`).join('');
 }
+
 function showToast(msg,type){
   const t=document.getElementById('toast');
   t.textContent=msg;t.className='toast '+(type||'ok');t.style.display='block';
   setTimeout(()=>{t.style.display='none';},2800);
 }
+
 function go(name,tabEl){
   document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
@@ -471,6 +611,7 @@ function go(name,tabEl){
   if(name==='log')buildLogHist();
   if(name==='drills')buildDrills('all');
 }
+
 initHeader();buildStrip();buildToday();buildWeek();buildDrills('all');buildLogHist();
 </script>
 </body>
